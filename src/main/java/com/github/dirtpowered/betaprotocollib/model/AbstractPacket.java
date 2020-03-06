@@ -32,9 +32,9 @@ public abstract class AbstractPacket<T extends Packet> {
     protected String readString(ByteBuf buffer, int maxcap) {
         short size = buffer.readShort();
         if (size > maxcap) {
-            Logger.warn("Received string length longer than maximum allowed (" + size + " > " + /*27070*/maxcap + ")");
+            Logger.warn("{}: Received string length longer than maximum allowed (" + size + " > " + /*27070*/maxcap + ")", packetId);
         } else if (size < 0) {
-            Logger.warn("Received string length is less than zero! Weird string!");
+            Logger.warn("{}: Received string length is less than zero! Weird string!", packetId);
         } else {
             StringBuilder builder = new StringBuilder();
 
