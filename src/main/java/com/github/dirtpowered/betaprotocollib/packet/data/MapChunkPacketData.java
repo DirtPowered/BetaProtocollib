@@ -35,6 +35,18 @@ public class MapChunkPacketData extends Packet {
         this.chunk = chunk.clone();
     }
 
+    public MapChunkPacketData(int x, int y, int z, int xSize, int ySize, int zSize, byte[] chunk) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.zSize = zSize;
+
+        this.chunk = chunk.clone();
+    }
+
     public int getXSize() {
         return xSize;
     }

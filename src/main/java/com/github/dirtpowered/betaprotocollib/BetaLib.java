@@ -44,6 +44,7 @@ import com.github.dirtpowered.betaprotocollib.packet.SetSlotPacket;
 import com.github.dirtpowered.betaprotocollib.packet.SleepPacket;
 import com.github.dirtpowered.betaprotocollib.packet.SoundEffectPacket;
 import com.github.dirtpowered.betaprotocollib.packet.SpawnPositionPacket;
+import com.github.dirtpowered.betaprotocollib.packet.StatisticsPacket;
 import com.github.dirtpowered.betaprotocollib.packet.ThunderboltPacket;
 import com.github.dirtpowered.betaprotocollib.packet.TransactionPacket;
 import com.github.dirtpowered.betaprotocollib.packet.UpdateHealthPacket;
@@ -117,6 +118,7 @@ public class BetaLib {
         registry.registerPacket(0x17, VehicleSpawnPacket.class);
         registry.registerPacket(0x27, AttachEntityPacket.class);
         registry.registerPacket(0x1E, EntityPacket.class);
+        registry.registerPacket(0xC8, StatisticsPacket.class);
     }
 
     public static PacketRegistry getRegistry() {

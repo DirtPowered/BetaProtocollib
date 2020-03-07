@@ -68,6 +68,6 @@ public class MapChunkPacket extends AbstractPacket<MapChunkPacketData> {
             inflater.end();
         }
 
-        return new MapChunkPacketData(x, y, z, chunk);
+        return new MapChunkPacketData(x, y, z, xSize, ySize, zSize, chunk);
     }
 }
