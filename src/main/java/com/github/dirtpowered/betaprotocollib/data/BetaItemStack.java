@@ -1,10 +1,22 @@
-package com.github.dirtpowered.betaprotocollib.utils;
+package com.github.dirtpowered.betaprotocollib.data;
 
 public class BetaItemStack {
 
     private int blockId;
     private int amount;
     private int data;
+
+    public BetaItemStack() {
+        this.blockId = 0;
+        this.amount = 0;
+        this.data = 0;
+    }
+
+    public BetaItemStack(int blockId) {
+        this.blockId = blockId;
+        this.amount = 0;
+        this.data = 0;
+    }
 
     public BetaItemStack(int blockId, int amount, int data) {
         this.blockId = blockId;

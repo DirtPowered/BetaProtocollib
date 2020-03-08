@@ -1,8 +1,8 @@
 package com.github.dirtpowered.betaprotocollib.packet.data;
 
+import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.WindowClickPacket;
-import com.github.dirtpowered.betaprotocollib.utils.BetaItemStack;
 
 public class WindowClickPacketData extends Packet {
     private int windowId;

@@ -1,8 +1,8 @@
 package com.github.dirtpowered.betaprotocollib.packet.data;
 
+import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.BlockPlacePacket;
-import com.github.dirtpowered.betaprotocollib.utils.BetaItemStack;
 
 public class BlockPlacePacketData extends Packet {
 

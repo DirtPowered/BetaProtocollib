@@ -1,8 +1,8 @@
 package com.github.dirtpowered.betaprotocollib.packet;
 
+import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
 import com.github.dirtpowered.betaprotocollib.packet.data.WindowClickPacketData;
-import com.github.dirtpowered.betaprotocollib.utils.BetaItemStack;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 

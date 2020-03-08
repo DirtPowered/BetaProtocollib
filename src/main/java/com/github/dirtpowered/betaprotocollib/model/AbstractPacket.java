@@ -20,7 +20,7 @@ public abstract class AbstractPacket<T extends Packet> {
 
     public abstract T readPacketData(ByteBuf buffer) throws IOException;
 
-    protected void writeString(String string, ByteBuf buffer) {
+    public static void writeString(String string, ByteBuf buffer) {
         if (string.length() > 32767) {
             Logger.warn("String too big");
         } else {
@@ -29,12 +29,12 @@ public abstract class AbstractPacket<T extends Packet> {
         }
     }
 
-    protected String readString(ByteBuf buffer, int maxcap) {
+    public static String readString(ByteBuf buffer, int maxcap) {
         short size = buffer.readShort();
         if (size > maxcap) {
-            Logger.warn("{}: Received string length longer than maximum allowed (" + size + " > " + /*27070*/maxcap + ")", packetId);
+            Logger.warn("Received string length longer than maximum allowed (" + size + " > " + /*27070*/maxcap + ")");
         } else if (size < 0) {
-            Logger.warn("{}: Received string length is less than zero! Weird string!", packetId);
+            Logger.warn("Received string length is less than zero! Weird string!");
         } else {
             StringBuilder builder = new StringBuilder();
 

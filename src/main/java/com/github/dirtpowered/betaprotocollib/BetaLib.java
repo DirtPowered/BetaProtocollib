@@ -14,6 +14,7 @@ import com.github.dirtpowered.betaprotocollib.packet.EntityActionPacket;
 import com.github.dirtpowered.betaprotocollib.packet.EntityDestroyPacket;
 import com.github.dirtpowered.betaprotocollib.packet.EntityEquipmentPacket;
 import com.github.dirtpowered.betaprotocollib.packet.EntityLookPacket;
+import com.github.dirtpowered.betaprotocollib.packet.EntityMetadataPacket;
 import com.github.dirtpowered.betaprotocollib.packet.EntityMoveLookPacket;
 import com.github.dirtpowered.betaprotocollib.packet.EntityPacket;
 import com.github.dirtpowered.betaprotocollib.packet.EntityPositionPacket;
@@ -117,6 +118,7 @@ public class BetaLib {
         registry.registerPacket(0x16, CollectPacket.class);
         registry.registerPacket(0x17, VehicleSpawnPacket.class);
         registry.registerPacket(0x27, AttachEntityPacket.class);
+        registry.registerPacket(0x28, EntityMetadataPacket.class);
         registry.registerPacket(0x1E, EntityPacket.class);
         registry.registerPacket(0xC8, StatisticsPacket.class);
     }
