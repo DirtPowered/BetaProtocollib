@@ -28,7 +28,7 @@ public class WindowClickPacket extends AbstractPacket<WindowClickPacketData> {
         } else {
             buffer.writeShort(item.getBlockId());
             buffer.writeByte(item.getAmount());
-            buffer.writeByte(item.getData());
+            buffer.writeShort(item.getData());
         }
         return buffer;
     }
