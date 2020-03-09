@@ -29,6 +29,15 @@ public class OpenWindowPacket extends AbstractPacket<OpenWindowPacketData> {
 
     @Override
     public OpenWindowPacketData readPacketData(ByteBuf buffer) {
-        return new OpenWindowPacketData(0, 0, "", 0); //TODO: Finish it
+        int windowId = buffer.readByte();
+        int inventoryType = buffer.readByte();
+
+        int lenght = buffer.readShort();
+        byte[] bytes = new byte[lenght];
+        buffer.readBytes(bytes);
+
+        int slotsCount = buffer.readByte();
+
+        return new OpenWindowPacketData(windowId, inventoryType, new String(bytes, Charset.forName("UTF-8")), slotsCount);
     }
 }

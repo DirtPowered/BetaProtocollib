@@ -7,6 +7,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExplosionPacket extends AbstractPacket<ExplosionPacketData> {
 
@@ -34,10 +35,20 @@ public class ExplosionPacket extends AbstractPacket<ExplosionPacketData> {
 
     @Override
     public ExplosionPacketData readPacketData(ByteBuf buffer) {
-        int x = (int) buffer.readDouble();
-        int y = (int) buffer.readDouble();
-        int z = (int) buffer.readDouble();
+        double x = buffer.readDouble();
+        double y = buffer.readDouble();
+        double z = buffer.readDouble();
         float explosionSize = buffer.readFloat();
-        return new ExplosionPacketData(x, y, z, explosionSize, new ArrayList());
+
+        List<Location> records = new ArrayList<>();
+        for (int i = 0; i < explosionSize; i++) {
+            int locX = buffer.readByte();
+            int locY = buffer.readByte();
+            int locZ = buffer.readByte();
+
+            records.add(new Location(locX, locY, locZ));
+        }
+
+        return new ExplosionPacketData(x, y, z, explosionSize, records);
     }
 }

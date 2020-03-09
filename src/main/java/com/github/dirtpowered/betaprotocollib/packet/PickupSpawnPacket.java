@@ -41,9 +41,9 @@ public class PickupSpawnPacket extends AbstractPacket<PickupSpawnPacketData> {
         int x = buffer.readInt();
         int y = buffer.readInt();
         int z = buffer.readInt();
-        byte yaw = buffer.readByte();
-        byte pitch = buffer.readByte();
-        byte roll = buffer.readByte();
+        int yaw = buffer.readByte();
+        int pitch = buffer.readByte();
+        int roll = buffer.readByte();
         return new PickupSpawnPacketData(entityId, x, y, z, yaw, pitch, roll, new BetaItemStack(itemId, amount, itemData));
     }
 }

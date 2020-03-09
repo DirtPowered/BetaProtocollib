@@ -9,12 +9,12 @@ public class PickupSpawnPacketData extends Packet {
     private int x;
     private int y;
     private int z;
-    private byte yaw;
-    private byte pitch;
-    private byte roll;
+    private int yaw;
+    private int pitch;
+    private int roll;
     private BetaItemStack itemStack;
 
-    public PickupSpawnPacketData(int entityId, int x, int y, int z, byte yaw, byte pitch, byte roll, BetaItemStack itemStack) {
+    public PickupSpawnPacketData(int entityId, int x, int y, int z, int yaw, int pitch, int roll, BetaItemStack itemStack) {
         this.entityId = entityId;
         this.x = x;
         this.y = y;
@@ -41,15 +41,15 @@ public class PickupSpawnPacketData extends Packet {
         return z;
     }
 
-    public byte getYaw() {
+    public int getYaw() {
         return yaw;
     }
 
-    public byte getPitch() {
+    public int getPitch() {
         return pitch;
     }
 
-    public byte getRoll() {
+    public int getRoll() {
         return roll;
     }
 

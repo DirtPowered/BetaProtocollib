@@ -35,4 +35,9 @@ public class BetaItemStack {
     public int getData() {
         return data;
     }
+
+    @Override
+    public String toString() {
+        return "BetaItemStack [blockId=" + blockId + ", amount=" + amount + ", data=" + data + "]";
+    }
 }

@@ -14,7 +14,7 @@ public class ExplosionPacketData extends Packet {
     private float explosionSize;
     private List<Location> destroyedBlockPositions;
 
-    public ExplosionPacketData(int x, int y, int z, float explosionSize, List<Location> destroyedBlockPositions) {
+    public ExplosionPacketData(double x, double y, double z, float explosionSize, List<Location> destroyedBlockPositions) {
         this.x = x;
         this.y = y;
         this.z = z;

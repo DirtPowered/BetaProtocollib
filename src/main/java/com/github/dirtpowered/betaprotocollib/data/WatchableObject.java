@@ -22,4 +22,9 @@ public class WatchableObject {
     Object getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "WatchableObject [type=" + type + ", index=" + index + ", value=" + value + "]";
+    }
 }

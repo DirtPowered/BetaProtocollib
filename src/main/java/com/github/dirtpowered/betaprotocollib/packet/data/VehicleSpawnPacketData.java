@@ -13,16 +13,22 @@ public class VehicleSpawnPacketData extends Packet {
     private int velocityX;
     private int velocityY;
     private int velocityZ;
+    private int velocity;
 
-    public VehicleSpawnPacketData(int entityId, int type, int x, int y, int z, int velocityX, int velocityY, int velocityZ) {
+    public VehicleSpawnPacketData(int entityId, int type, int x, int y, int z, int velocity, int velocityX, int velocityY, int velocityZ) {
         this.entityId = entityId;
         this.type = type;
         this.x = x;
         this.y = y;
         this.z = z;
+        this.velocity = velocity;
         this.velocityX = velocityX;
         this.velocityY = velocityY;
         this.velocityZ = velocityZ;
+    }
+
+    public int getVelocity() {
+        return velocity;
     }
 
     public int getVelocityX() {
