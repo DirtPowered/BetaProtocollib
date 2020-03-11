@@ -39,9 +39,10 @@ public class ExplosionPacket extends AbstractPacket<ExplosionPacketData> {
         double y = buffer.readDouble();
         double z = buffer.readDouble();
         float explosionSize = buffer.readFloat();
+        int destroyedBlockSize = buffer.readInt();
 
         List<Location> records = new ArrayList<>();
-        for (int i = 0; i < explosionSize; i++) {
+        for (int i = 0; i < destroyedBlockSize; i++) {
             int locX = buffer.readByte();
             int locY = buffer.readByte();
             int locZ = buffer.readByte();
