@@ -1,9 +1,13 @@
 package com.github.dirtpowered.betaprotocollib.packet;
 
+import com.github.dirtpowered.betaprotocollib.data.DataWatcher;
+import com.github.dirtpowered.betaprotocollib.data.WatchableObject;
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
 import com.github.dirtpowered.betaprotocollib.packet.data.MobSpawnPacketData;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+
+import java.util.List;
 
 public class MobSpawnPacket extends AbstractPacket<MobSpawnPacketData> {
 
@@ -22,7 +26,7 @@ public class MobSpawnPacket extends AbstractPacket<MobSpawnPacketData> {
         buffer.writeInt(packet.getZ());
         buffer.writeByte(packet.getYaw());
         buffer.writeByte(packet.getPitch());
-        buffer.writeByte(127);
+        DataWatcher.writeMetadata(buffer, packet.getMetadata());
 
         return buffer;
     }
@@ -36,6 +40,8 @@ public class MobSpawnPacket extends AbstractPacket<MobSpawnPacketData> {
         int z = buffer.readInt();
         byte yaw = buffer.readByte();
         byte pitch = buffer.readByte();
-        return new MobSpawnPacketData(entityId, type, x, y, z, yaw, pitch);
+        List<WatchableObject> watchableObjects = DataWatcher.readMetadata(buffer);
+
+        return new MobSpawnPacketData(entityId, type, x, y, z, yaw, pitch, watchableObjects);
     }
 }
