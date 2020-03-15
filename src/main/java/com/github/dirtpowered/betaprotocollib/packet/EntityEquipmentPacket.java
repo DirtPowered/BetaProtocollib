@@ -26,7 +26,7 @@ public class EntityEquipmentPacket extends AbstractPacket<EntityEquipmentPacketD
         int entityId = buffer.readInt();
         int slot = buffer.readShort();
         int itemId = buffer.readShort();
-        int itemData = buffer.readByte();
+        int itemData = buffer.readShort();
         return new EntityEquipmentPacketData(entityId, slot, itemId, itemData);
     }
 }

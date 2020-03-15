@@ -11,15 +11,15 @@ public class WatchableObject {
         this.value = value;
     }
 
-    int getType() {
+    public int getType() {
         return type;
     }
 
-    int getIndex() {
+    public int getIndex() {
         return index;
     }
 
-    Object getValue() {
+    public Object getValue() {
         return value;
     }
 

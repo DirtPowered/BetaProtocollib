@@ -2,7 +2,7 @@ package com.github.dirtpowered.betaprotocollib.packet;
 
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
 import com.github.dirtpowered.betaprotocollib.packet.data.ExplosionPacketData;
-import com.github.dirtpowered.betaprotocollib.utils.Location;
+import com.github.dirtpowered.betaprotocollib.utils.BlockLocation;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
@@ -24,10 +24,10 @@ public class ExplosionPacket extends AbstractPacket<ExplosionPacketData> {
         buffer.writeFloat(packet.getExplosionSize());
         buffer.writeInt(packet.getDestroyedBlockPositions().size());
 
-        for (Location record : packet.getDestroyedBlockPositions()) {
-            buffer.writeByte((int) record.getX());
-            buffer.writeByte((int) record.getY());
-            buffer.writeByte((int) record.getZ());
+        for (BlockLocation record : packet.getDestroyedBlockPositions()) {
+            buffer.writeByte(record.getX());
+            buffer.writeByte(record.getY());
+            buffer.writeByte(record.getZ());
         }
 
         return buffer;
@@ -41,13 +41,13 @@ public class ExplosionPacket extends AbstractPacket<ExplosionPacketData> {
         float explosionSize = buffer.readFloat();
         int destroyedBlockSize = buffer.readInt();
 
-        List<Location> records = new ArrayList<>();
+        List<BlockLocation> records = new ArrayList<>();
         for (int i = 0; i < destroyedBlockSize; i++) {
             int locX = buffer.readByte();
             int locY = buffer.readByte();
             int locZ = buffer.readByte();
 
-            records.add(new Location(locX, locY, locZ));
+            records.add(new BlockLocation(locX, locY, locZ));
         }
 
         return new ExplosionPacketData(x, y, z, explosionSize, records);

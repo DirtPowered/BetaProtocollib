@@ -12,14 +12,6 @@ public abstract class AbstractPacket<T extends Packet> {
         this.packetId = packetId;
     }
 
-    public final int getPacketId() {
-        return this.packetId;
-    }
-
-    public abstract ByteBuf writePacketData(T packet) throws IOException;
-
-    public abstract T readPacketData(ByteBuf buffer) throws IOException;
-
     public static void writeString(String string, ByteBuf buffer) {
         if (string.length() > 32767) {
             Logger.warn("String too big");
@@ -47,4 +39,12 @@ public abstract class AbstractPacket<T extends Packet> {
 
         return null;
     }
+
+    public final int getPacketId() {
+        return this.packetId;
+    }
+
+    public abstract ByteBuf writePacketData(T packet) throws IOException;
+
+    public abstract T readPacketData(ByteBuf buffer) throws IOException;
 }

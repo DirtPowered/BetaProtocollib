@@ -16,9 +16,9 @@ public class MultiBlockChangePacket extends AbstractPacket<MultiBlockChangePacke
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeInt(packet.getX());
         buffer.writeInt(packet.getZ());
-        buffer.writeShort((short)packet.getSize());
+        buffer.writeShort((short) packet.getSize());
 
-        for(int i = 0; i < packet.getSize(); ++i) {
+        for (int i = 0; i < packet.getSize(); ++i) {
             buffer.writeShort(packet.getCoordinateArray()[i]);
         }
 
@@ -36,7 +36,7 @@ public class MultiBlockChangePacket extends AbstractPacket<MultiBlockChangePacke
         byte[] typeArray = new byte[size];
         byte[] metadataArray = new byte[size];
 
-        for(int i = 0; i < size; ++i) {
+        for (int i = 0; i < size; ++i) {
             coordinateArray[i] = buffer.readShort();
         }
 

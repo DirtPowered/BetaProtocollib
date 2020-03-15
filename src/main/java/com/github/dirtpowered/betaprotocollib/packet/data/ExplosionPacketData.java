@@ -2,7 +2,7 @@ package com.github.dirtpowered.betaprotocollib.packet.data;
 
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.ExplosionPacket;
-import com.github.dirtpowered.betaprotocollib.utils.Location;
+import com.github.dirtpowered.betaprotocollib.utils.BlockLocation;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ public class ExplosionPacketData extends Packet {
     private double y;
     private double z;
     private float explosionSize;
-    private List<Location> destroyedBlockPositions;
+    private List<BlockLocation> destroyedBlockPositions;
 
-    public ExplosionPacketData(double x, double y, double z, float explosionSize, List<Location> destroyedBlockPositions) {
+    public ExplosionPacketData(double x, double y, double z, float explosionSize, List<BlockLocation> destroyedBlockPositions) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -38,7 +38,7 @@ public class ExplosionPacketData extends Packet {
         return explosionSize;
     }
 
-    public List<Location> getDestroyedBlockPositions() {
+    public List<BlockLocation> getDestroyedBlockPositions() {
         return destroyedBlockPositions;
     }
 

@@ -1,7 +1,7 @@
 package com.github.dirtpowered.betaprotocollib.data;
 
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
-import com.github.dirtpowered.betaprotocollib.utils.Location;
+import com.github.dirtpowered.betaprotocollib.utils.BlockLocation;
 import io.netty.buffer.ByteBuf;
 
 import java.util.ArrayList;
@@ -36,10 +36,10 @@ public class DataWatcher {
                     buffer.writeShort(itemStack.getData());
                     break;
                 case 6:
-                    Location location = (Location) watchableObject.getValue();
-                    buffer.writeInt((int) location.getX());
-                    buffer.writeInt((int) location.getY());
-                    buffer.writeInt((int) location.getZ());
+                    BlockLocation location = (BlockLocation) watchableObject.getValue();
+                    buffer.writeInt(location.getX());
+                    buffer.writeInt(location.getY());
+                    buffer.writeInt(location.getZ());
             }
         }
     }
@@ -81,7 +81,7 @@ public class DataWatcher {
                     int x = buffer.readInt();
                     int y = buffer.readInt();
                     int z = buffer.readInt();
-                    value = new WatchableObject(type, index, new Location(x, y, z));
+                    value = new WatchableObject(type, index, new BlockLocation(x, y, z));
             }
 
             dataMap.add(value);
