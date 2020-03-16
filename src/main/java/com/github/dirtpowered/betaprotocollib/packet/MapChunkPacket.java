@@ -27,7 +27,7 @@ public class MapChunkPacket extends AbstractPacket<MapChunkPacketData> {
         buffer.writeByte(packet.getZSize());
 
         byte[] data = packet.getChunk();
-        Deflater deflater = new Deflater(-1);
+        Deflater deflater = new Deflater(Deflater.BEST_SPEED);
 
         try {
             deflater.setInput(data);

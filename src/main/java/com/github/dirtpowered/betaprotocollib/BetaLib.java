@@ -28,6 +28,7 @@ import com.github.dirtpowered.betaprotocollib.packet.KeepAlivePacket;
 import com.github.dirtpowered.betaprotocollib.packet.KickDisconnectPacket;
 import com.github.dirtpowered.betaprotocollib.packet.LoginPacket;
 import com.github.dirtpowered.betaprotocollib.packet.MapChunkPacket;
+import com.github.dirtpowered.betaprotocollib.packet.MapDataPacket;
 import com.github.dirtpowered.betaprotocollib.packet.MobSpawnPacket;
 import com.github.dirtpowered.betaprotocollib.packet.MultiBlockChangePacket;
 import com.github.dirtpowered.betaprotocollib.packet.NamedEntitySpawnPacket;
@@ -121,6 +122,7 @@ public class BetaLib {
         registry.registerPacket(0x28, EntityMetadataPacket.class);
         registry.registerPacket(0x1E, EntityPacket.class);
         registry.registerPacket(0xC8, StatisticsPacket.class);
+        registry.registerPacket(0x83, MapDataPacket.class);
     }
 
     public static PacketRegistry getRegistry() {
