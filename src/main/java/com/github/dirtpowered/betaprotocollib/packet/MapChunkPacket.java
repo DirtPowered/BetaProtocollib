@@ -48,9 +48,9 @@ public class MapChunkPacket extends AbstractPacket<MapChunkPacketData> {
         int x = buffer.readInt();
         int y = buffer.readShort();
         int z = buffer.readInt();
-        int xSize = buffer.readByte();
-        int ySize = buffer.readByte();
-        int zSize = buffer.readByte();
+        int xSize = buffer.readByte() + 1;
+        int ySize = buffer.readByte() + 1;
+        int zSize = buffer.readByte() + 1;
 
         int chunkSize = buffer.readInt();
         byte[] buf = new byte[chunkSize];
