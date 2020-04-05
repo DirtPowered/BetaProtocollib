@@ -23,4 +23,9 @@ public class BlockLocation {
     public int getZ() {
         return z;
     }
+
+    @Override
+    public String toString() {
+        return "BlockLocation [x=" + x + ", y=" + y + ", z=" + z + "]";
+    }
 }
