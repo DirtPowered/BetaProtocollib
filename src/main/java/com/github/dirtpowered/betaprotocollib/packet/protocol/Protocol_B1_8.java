@@ -2,7 +2,6 @@ package com.github.dirtpowered.betaprotocollib.packet.protocol;
 
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.AnimationPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.AttachEntityPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.BedAndWeatherPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.BlockChangePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.BlockDigPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.BlockItemSwitchPacket;
@@ -54,9 +53,14 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.UseEntityPacke
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.VehicleSpawnPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.WindowClickPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.WindowItemsPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.BedAndWeatherPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.EntityEffectPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.ExperienceOrbPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.ExperienceUpdatePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.KeepAlivePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.LoginPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.PlayerListItemPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.RemoveEntityEffectPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.UpdateHealthPacket;
 import com.github.dirtpowered.betaprotocollib.registry.PacketRegistry;
 
@@ -121,5 +125,9 @@ public class Protocol_B1_8 {
         registry.registerPacket(0xC8, StatisticsPacket.class);
         registry.registerPacket(0x83, MapDataPacket.class);
         registry.registerPacket(0xC9, PlayerListItemPacket.class);
+        registry.registerPacket(0x29, EntityEffectPacket.class);
+        registry.registerPacket(0x2A, RemoveEntityEffectPacket.class);
+        registry.registerPacket(0x2B, ExperienceUpdatePacket.class);
+        registry.registerPacket(0x1A, ExperienceOrbPacket.class);
     }
 }
