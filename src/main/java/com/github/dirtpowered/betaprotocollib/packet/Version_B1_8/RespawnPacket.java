@@ -27,8 +27,8 @@ public class RespawnPacket extends AbstractPacket<RespawnPacketData> {
         int dimension = buffer.readByte();
         int difficulty = buffer.readByte();
         int gamemode = buffer.readByte();
-        short worldHeight = buffer.readByte();
-        long mapSeed = buffer.readByte();
+        short worldHeight = buffer.readShort();
+        long mapSeed = buffer.readLong();
         return new RespawnPacketData(dimension, difficulty, gamemode, worldHeight, mapSeed);
     }
 }
