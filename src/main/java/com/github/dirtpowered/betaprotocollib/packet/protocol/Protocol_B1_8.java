@@ -62,6 +62,7 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.LoginPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.OpenWindowPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.PlayerListItemPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.RemoveEntityEffectPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.ServerListPingPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.UpdateHealthPacket;
 import com.github.dirtpowered.betaprotocollib.registry.PacketRegistry;
 
@@ -131,5 +132,6 @@ public class Protocol_B1_8 {
         registry.registerPacket(0x2B, ExperienceUpdatePacket.class);
         registry.registerPacket(0x1A, ExperienceOrbPacket.class);
         registry.registerPacket(0x6B, CreativeItemGetPacket.class);
+        registry.registerPacket(0xFE, ServerListPingPacket.class);
     }
 }
