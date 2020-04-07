@@ -6,7 +6,7 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.EntityMetadata
 
 import java.util.List;
 
-public class EntityMetadataPacketData extends Packet {
+public class EntityMetadataPacketData extends Packet<EntityMetadataPacket> {
 
     /*
      * https://wiki.vg/Entity_metadata#Entity_Metadata_Format
@@ -29,7 +29,15 @@ public class EntityMetadataPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) EntityMetadataPacket.class;
+    public Class<EntityMetadataPacket> getPacketClass() {
+        return EntityMetadataPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "EntityMetadataPacketData{"
+                + "entityId=" + entityId
+                + ", metadata=" + metadata
+                + '}';
     }
 }

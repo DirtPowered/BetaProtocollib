@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PaintingPacket;
 
-public class PaintingPacketData extends Packet {
+public class PaintingPacketData extends Packet<PaintingPacket> {
 
     private int entityId;
     private int x;
@@ -46,7 +46,19 @@ public class PaintingPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) PaintingPacket.class;
+    public Class<PaintingPacket> getPacketClass() {
+        return PaintingPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "PaintingPacketData{"
+                + "entityId=" + entityId
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", direction=" + direction
+                + ", title='" + title + '\''
+                + '}';
     }
 }

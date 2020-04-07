@@ -25,6 +25,10 @@ public class WatchableObject {
 
     @Override
     public String toString() {
-        return "WatchableObject [type=" + type + ", index=" + index + ", value=" + value + "]";
+        return "WatchableObject{"
+                + "type=" + type
+                + ", index=" + index
+                + ", value=" + value
+                + '}';
     }
 }

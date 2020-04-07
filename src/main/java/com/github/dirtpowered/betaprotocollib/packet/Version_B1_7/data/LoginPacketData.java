@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.LoginPacket;
 
-public class LoginPacketData extends Packet {
+public class LoginPacketData extends Packet<LoginPacket> {
     private int entityId;
     private String playerName;
     private long seed;
@@ -33,7 +33,17 @@ public class LoginPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) LoginPacket.class;
+    public Class<LoginPacket> getPacketClass() {
+        return LoginPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginPacketData{"
+                + "entityId=" + entityId
+                + ", playerName='" + playerName + '\''
+                + ", seed=" + seed
+                + ", dimension=" + dimension
+                + '}';
     }
 }

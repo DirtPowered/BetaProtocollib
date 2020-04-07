@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PlayerInventoryPacket;
 
-public class PlayerInventoryPacketData extends Packet {
+public class PlayerInventoryPacketData extends Packet<PlayerInventoryPacket> {
 
     private int entityId;
     private int slot;
@@ -34,7 +34,17 @@ public class PlayerInventoryPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) PlayerInventoryPacket.class;
+    public Class<PlayerInventoryPacket> getPacketClass() {
+        return PlayerInventoryPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerInventoryPacketData{"
+                + "entityId=" + entityId
+                + ", slot=" + slot
+                + ", itemId=" + itemId
+                + ", itemDamage=" + itemDamage
+                + '}';
     }
 }

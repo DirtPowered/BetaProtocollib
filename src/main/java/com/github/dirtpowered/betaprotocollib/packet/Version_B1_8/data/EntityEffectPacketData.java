@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.EntityEffectPacket;
 
-public class EntityEffectPacketData extends Packet {
+public class EntityEffectPacketData extends Packet<EntityEffectPacket> {
     private int entityId;
     private int effectId;
     private int amplifier;
@@ -33,7 +33,17 @@ public class EntityEffectPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) EntityEffectPacket.class;
+    public Class<EntityEffectPacket> getPacketClass() {
+        return EntityEffectPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "EntityEffectPacketData{"
+                + "entityId=" + entityId
+                + ", effectId=" + effectId
+                + ", amplifier=" + amplifier
+                + ", duration=" + duration
+                + '}';
     }
 }

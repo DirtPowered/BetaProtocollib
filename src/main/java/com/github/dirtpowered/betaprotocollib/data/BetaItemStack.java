@@ -42,6 +42,10 @@ public class BetaItemStack {
 
     @Override
     public String toString() {
-        return "BetaItemStack [blockId=" + blockId + ", amount=" + amount + ", data=" + data + "]";
+        return "BetaItemStack{"
+                + "blockId=" + blockId
+                + ", amount=" + amount
+                + ", data=" + data
+                + '}';
     }
 }

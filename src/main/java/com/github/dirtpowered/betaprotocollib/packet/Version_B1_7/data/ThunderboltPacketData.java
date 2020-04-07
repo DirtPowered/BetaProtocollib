@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.ThunderboltPacket;
 
-public class ThunderboltPacketData extends Packet {
+public class ThunderboltPacketData extends Packet<ThunderboltPacket> {
 
     private int entityId;
     private int x;
@@ -40,7 +40,18 @@ public class ThunderboltPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) ThunderboltPacket.class;
+    public Class<ThunderboltPacket> getPacketClass() {
+        return ThunderboltPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "ThunderboltPacketData{"
+                + "entityId=" + entityId
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", lighting=" + lighting
+                + '}';
     }
 }

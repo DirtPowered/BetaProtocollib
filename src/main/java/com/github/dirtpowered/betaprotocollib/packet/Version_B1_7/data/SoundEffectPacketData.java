@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.SoundEffectPacket;
 
-public class SoundEffectPacketData extends Packet {
+public class SoundEffectPacketData extends Packet<SoundEffectPacket> {
 
     private int soundType;
     private int x;
@@ -40,7 +40,18 @@ public class SoundEffectPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) SoundEffectPacket.class;
+    public Class<SoundEffectPacket> getPacketClass() {
+        return SoundEffectPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "SoundEffectPacketData{"
+                + "soundType=" + soundType
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", data=" + data
+                + '}';
     }
 }

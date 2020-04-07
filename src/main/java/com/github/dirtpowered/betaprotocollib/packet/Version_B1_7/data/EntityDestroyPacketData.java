@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.EntityDestroyPacket;
 
-public class EntityDestroyPacketData extends Packet {
+public class EntityDestroyPacketData extends Packet<EntityDestroyPacket> {
 
     private int entityId;
 
@@ -16,7 +16,14 @@ public class EntityDestroyPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) EntityDestroyPacket.class;
+    public Class<EntityDestroyPacket> getPacketClass() {
+        return EntityDestroyPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "EntityDestroyPacketData{"
+                + "entityId=" + entityId
+                + '}';
     }
 }

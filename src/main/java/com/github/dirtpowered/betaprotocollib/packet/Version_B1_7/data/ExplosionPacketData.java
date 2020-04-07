@@ -6,7 +6,7 @@ import com.github.dirtpowered.betaprotocollib.utils.BlockLocation;
 
 import java.util.List;
 
-public class ExplosionPacketData extends Packet {
+public class ExplosionPacketData extends Packet<ExplosionPacket> {
 
     private double x;
     private double y;
@@ -43,7 +43,18 @@ public class ExplosionPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) ExplosionPacket.class;
+    public Class<ExplosionPacket> getPacketClass() {
+        return ExplosionPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "ExplosionPacketData{"
+                + "x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", explosionSize=" + explosionSize
+                + ", destroyedBlockPositions=" + destroyedBlockPositions
+                + '}';
     }
 }

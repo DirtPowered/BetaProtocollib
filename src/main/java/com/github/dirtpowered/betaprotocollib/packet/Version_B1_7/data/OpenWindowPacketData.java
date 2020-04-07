@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.OpenWindowPacket;
 
-public class OpenWindowPacketData extends Packet {
+public class OpenWindowPacketData extends Packet<OpenWindowPacket> {
     private int windowId;
     private int inventoryType;
     private String windowTitle;
@@ -33,7 +33,17 @@ public class OpenWindowPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) OpenWindowPacket.class;
+    public Class<OpenWindowPacket> getPacketClass() {
+        return OpenWindowPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "OpenWindowPacketData{"
+                + "windowId=" + windowId
+                + ", inventoryType=" + inventoryType
+                + ", windowTitle='" + windowTitle + '\''
+                + ", slotsCount=" + slotsCount
+                + '}';
     }
 }

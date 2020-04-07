@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PreChunkPacket;
 
-public class PreChunkPacketData extends Packet {
+public class PreChunkPacketData extends Packet<PreChunkPacket> {
     private int x;
     private int z;
     private boolean full;
@@ -27,7 +27,16 @@ public class PreChunkPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) PreChunkPacket.class;
+    public Class<PreChunkPacket> getPacketClass() {
+        return PreChunkPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "PreChunkPacketData{"
+                + "x=" + x
+                + ", z=" + z
+                + ", full=" + full
+                + '}';
     }
 }

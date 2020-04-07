@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.PlayerListItemPacket;
 
-public class PlayerListItemPacketData extends Packet {
+public class PlayerListItemPacketData extends Packet<PlayerListItemPacket> {
 
     private String username;
     private boolean online;
@@ -28,7 +28,16 @@ public class PlayerListItemPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) PlayerListItemPacket.class;
+    public Class<PlayerListItemPacket> getPacketClass() {
+        return PlayerListItemPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerListItemPacketData{"
+                + "username='" + username + '\''
+                + ", online=" + online
+                + ", ping=" + ping
+                + '}';
     }
 }

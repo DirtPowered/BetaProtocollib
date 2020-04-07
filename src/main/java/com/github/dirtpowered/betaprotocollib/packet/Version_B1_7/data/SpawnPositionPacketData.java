@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.SpawnPositionPacket;
 
-public class SpawnPositionPacketData extends Packet {
+public class SpawnPositionPacketData extends Packet<SpawnPositionPacket> {
 
     private int x;
     private int y;
@@ -28,7 +28,16 @@ public class SpawnPositionPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) SpawnPositionPacket.class;
+    public Class<SpawnPositionPacket> getPacketClass() {
+        return SpawnPositionPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "SpawnPositionPacketData{"
+                + "x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + '}';
     }
 }

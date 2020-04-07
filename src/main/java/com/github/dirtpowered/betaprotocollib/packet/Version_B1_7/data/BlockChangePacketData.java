@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.BlockChangePacket;
 
-public class BlockChangePacketData extends Packet {
+public class BlockChangePacketData extends Packet<BlockChangePacket> {
 
     private int xPosition;
     private int yPosition;
@@ -41,7 +41,18 @@ public class BlockChangePacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) BlockChangePacket.class;
+    public Class<BlockChangePacket> getPacketClass() {
+        return BlockChangePacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "BlockChangePacketData{"
+                + "xPosition=" + xPosition
+                + ", yPosition=" + yPosition
+                + ", zPosition=" + zPosition
+                + ", type=" + type
+                + ", metadata=" + metadata
+                + '}';
     }
 }

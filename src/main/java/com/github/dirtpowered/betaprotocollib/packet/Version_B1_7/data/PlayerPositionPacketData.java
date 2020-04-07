@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PlayerPositionPacket;
 
-public class PlayerPositionPacketData extends Packet {
+public class PlayerPositionPacketData extends Packet<PlayerPositionPacket> {
 
     private double x;
     private double y;
@@ -40,7 +40,18 @@ public class PlayerPositionPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) PlayerPositionPacket.class;
+    public Class<PlayerPositionPacket> getPacketClass() {
+        return PlayerPositionPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerPositionPacketData{"
+                + "x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", stance=" + stance
+                + ", onGround=" + onGround
+                + '}';
     }
 }

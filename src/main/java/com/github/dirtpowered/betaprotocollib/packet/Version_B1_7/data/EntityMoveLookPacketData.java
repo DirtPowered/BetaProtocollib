@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.EntityMoveLookPacket;
 
-public class EntityMoveLookPacketData extends Packet {
+public class EntityMoveLookPacketData extends Packet<EntityMoveLookPacket> {
 
     private int entityId;
     private int x;
@@ -46,7 +46,19 @@ public class EntityMoveLookPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) EntityMoveLookPacket.class;
+    public Class<EntityMoveLookPacket> getPacketClass() {
+        return EntityMoveLookPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "EntityMoveLookPacketData{"
+                + "entityId=" + entityId
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", yaw=" + yaw
+                + ", pitch=" + pitch
+                + '}';
     }
 }

@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.BlockItemSwitchPacket;
 
-public class BlockItemSwitchPacketData extends Packet {
+public class BlockItemSwitchPacketData extends Packet<BlockItemSwitchPacket> {
 
     private int slot;
 
@@ -16,7 +16,14 @@ public class BlockItemSwitchPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) BlockItemSwitchPacket.class;
+    public Class<BlockItemSwitchPacket> getPacketClass() {
+        return BlockItemSwitchPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "BlockItemSwitchPacketData{"
+                + "slot=" + slot
+                + '}';
     }
 }

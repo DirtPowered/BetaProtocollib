@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.BedAndWeatherPacket;
 
-public class BedAndWeatherPacketData extends Packet {
+public class BedAndWeatherPacketData extends Packet<BedAndWeatherPacket> {
 
     private int reason;
     private int gamemode;
@@ -22,7 +22,15 @@ public class BedAndWeatherPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) BedAndWeatherPacket.class;
+    public Class<BedAndWeatherPacket> getPacketClass() {
+        return BedAndWeatherPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "BedAndWeatherPacketData{"
+                + "reason=" + reason
+                + ", gamemode=" + gamemode
+                + '}';
     }
 }

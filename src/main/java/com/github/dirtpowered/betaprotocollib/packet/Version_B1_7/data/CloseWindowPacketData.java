@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.CloseWindowPacket;
 
-public class CloseWindowPacketData extends Packet {
+public class CloseWindowPacketData extends Packet<CloseWindowPacket> {
 
     private int windowId;
 
@@ -16,7 +16,14 @@ public class CloseWindowPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) CloseWindowPacket.class;
+    public Class<CloseWindowPacket> getPacketClass() {
+        return CloseWindowPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "CloseWindowPacketData{"
+                + "windowId=" + windowId
+                + '}';
     }
 }

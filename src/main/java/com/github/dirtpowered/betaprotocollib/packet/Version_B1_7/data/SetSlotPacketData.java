@@ -4,12 +4,11 @@ import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.SetSlotPacket;
 
-public class SetSlotPacketData extends Packet {
+public class SetSlotPacketData extends Packet<SetSlotPacket> {
 
     private int windowId;
     private int itemSlot;
     private BetaItemStack itemStack;
-
 
     public SetSlotPacketData(int windowId, int itemSlot, BetaItemStack itemStack) {
         this.windowId = windowId;
@@ -30,7 +29,16 @@ public class SetSlotPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) SetSlotPacket.class;
+    public Class<SetSlotPacket> getPacketClass() {
+        return SetSlotPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "SetSlotPacketData{"
+                + "windowId=" + windowId
+                + ", itemSlot=" + itemSlot
+                + ", itemStack=" + itemStack
+                + '}';
     }
 }

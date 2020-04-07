@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PlayerLookPacket;
 
-public class PlayerLookPacketData extends Packet {
+public class PlayerLookPacketData extends Packet<PlayerLookPacket> {
 
     private float yaw;
     private float pitch;
@@ -28,7 +28,16 @@ public class PlayerLookPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) PlayerLookPacket.class;
+    public Class<PlayerLookPacket> getPacketClass() {
+        return PlayerLookPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerLookPacketData{"
+                + "yaw=" + yaw
+                + ", pitch=" + pitch
+                + ", onGround=" + onGround
+                + '}';
     }
 }

@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.VehicleSpawnPacket;
 
-public class VehicleSpawnPacketData extends Packet {
+public class VehicleSpawnPacketData extends Packet<VehicleSpawnPacket> {
 
     private int entityId;
     private int type;
@@ -64,7 +64,22 @@ public class VehicleSpawnPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) VehicleSpawnPacket.class;
+    public Class<VehicleSpawnPacket> getPacketClass() {
+        return VehicleSpawnPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "VehicleSpawnPacketData{"
+                + "entityId=" + entityId
+                + ", type=" + type
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", velocityX=" + velocityX
+                + ", velocityY=" + velocityY
+                + ", velocityZ=" + velocityZ
+                + ", velocity=" + velocity
+                + '}';
     }
 }

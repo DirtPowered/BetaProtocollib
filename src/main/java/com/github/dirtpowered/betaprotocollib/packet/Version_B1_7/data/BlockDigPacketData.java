@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.BlockDigPacket;
 
-public class BlockDigPacketData extends Packet {
+public class BlockDigPacketData extends Packet<BlockDigPacket> {
     private int x;
     private int y;
     private int z;
@@ -39,7 +39,18 @@ public class BlockDigPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) BlockDigPacket.class;
+    public Class<BlockDigPacket> getPacketClass() {
+        return BlockDigPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "BlockDigPacketData{"
+                + "x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", face=" + face
+                + ", status=" + status
+                + '}';
     }
 }

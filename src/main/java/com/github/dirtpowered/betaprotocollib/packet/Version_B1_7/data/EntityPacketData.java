@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.EntityPacket;
 
-public class EntityPacketData extends Packet {
+public class EntityPacketData extends Packet<EntityPacket> {
 
     private int entityId;
 
@@ -16,7 +16,14 @@ public class EntityPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) EntityPacket.class;
+    public Class<EntityPacket> getPacketClass() {
+        return EntityPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "EntityPacketData{"
+                + "entityId=" + entityId
+                + '}';
     }
 }

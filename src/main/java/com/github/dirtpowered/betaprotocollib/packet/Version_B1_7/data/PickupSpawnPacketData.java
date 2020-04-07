@@ -4,7 +4,7 @@ import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PickupSpawnPacket;
 
-public class PickupSpawnPacketData extends Packet {
+public class PickupSpawnPacketData extends Packet<PickupSpawnPacket> {
     private int entityId;
     private int x;
     private int y;
@@ -58,7 +58,21 @@ public class PickupSpawnPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) PickupSpawnPacket.class;
+    public Class<PickupSpawnPacket> getPacketClass() {
+        return PickupSpawnPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "PickupSpawnPacketData{"
+                + "entityId=" + entityId
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", yaw=" + yaw
+                + ", pitch=" + pitch
+                + ", roll=" + roll
+                + ", itemStack=" + itemStack
+                + '}';
     }
 }

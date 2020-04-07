@@ -6,7 +6,7 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.MobSpawnPacket
 
 import java.util.List;
 
-public class MobSpawnPacketData extends Packet {
+public class MobSpawnPacketData extends Packet<MobSpawnPacket> {
     private int entityId;
     private byte type;
     private int x;
@@ -60,7 +60,21 @@ public class MobSpawnPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) MobSpawnPacket.class;
+    public Class<MobSpawnPacket> getPacketClass() {
+        return MobSpawnPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "MobSpawnPacketData{"
+                + "entityId=" + entityId
+                + ", type=" + type
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", yaw=" + yaw
+                + ", pitch=" + pitch
+                + ", metadata=" + metadata
+                + '}';
     }
 }

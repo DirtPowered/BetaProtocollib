@@ -4,7 +4,9 @@ import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.WindowItemsPacket;
 
-public class WindowItemsPacketData extends Packet {
+import java.util.Arrays;
+
+public class WindowItemsPacketData extends Packet<WindowItemsPacket> {
 
     private int windowId;
     private BetaItemStack[] itemStacks;
@@ -23,7 +25,15 @@ public class WindowItemsPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) WindowItemsPacket.class;
+    public Class<WindowItemsPacket> getPacketClass() {
+        return WindowItemsPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "WindowItemsPacketData{"
+                + "windowId=" + windowId
+                + ", itemStacks=" + Arrays.toString(itemStacks)
+                + '}';
     }
 }

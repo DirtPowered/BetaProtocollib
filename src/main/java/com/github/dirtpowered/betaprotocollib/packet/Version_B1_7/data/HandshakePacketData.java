@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.HandshakePacket;
 
-public class HandshakePacketData extends Packet {
+public class HandshakePacketData extends Packet<HandshakePacket> {
 
     private final String playerName;
 
@@ -16,7 +16,14 @@ public class HandshakePacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) HandshakePacket.class;
+    public Class<HandshakePacket> getPacketClass() {
+        return HandshakePacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "HandshakePacketData{"
+                + "playerName='" + playerName + '\''
+                + '}';
     }
 }

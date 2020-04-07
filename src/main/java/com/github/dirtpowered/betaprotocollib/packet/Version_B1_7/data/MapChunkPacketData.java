@@ -3,7 +3,9 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.MapChunkPacket;
 
-public class MapChunkPacketData extends Packet {
+import java.util.Arrays;
+
+public class MapChunkPacketData extends Packet<MapChunkPacket> {
     private int x;
     private int y;
     private int z;
@@ -11,18 +13,6 @@ public class MapChunkPacketData extends Packet {
     private int ySize;
     private int zSize;
     private byte[] chunk;
-
-    /*
-     * https://wiki.vg/index.php?title=Protocol&oldid=689#Map_Chunk_.280x33.29
-     *
-     * Packet data (from original mc-server):
-     * xPosition: 112
-     * yPosition: 0
-     * zPosition: -128
-     * xSize: 15
-     * ySize: 127
-     * zSize: 15
-     */
 
     public MapChunkPacketData(int x, int y, int z, int xSize, int ySize, int zSize, byte[] chunk) {
         this.x = x;
@@ -65,7 +55,20 @@ public class MapChunkPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) MapChunkPacket.class;
+    public Class<MapChunkPacket> getPacketClass() {
+        return MapChunkPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "MapChunkPacketData{"
+                + "x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", xSize=" + xSize
+                + ", ySize=" + ySize
+                + ", zSize=" + zSize
+                + ", chunk=" + Arrays.toString(chunk)
+                + '}';
     }
 }

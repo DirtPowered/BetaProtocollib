@@ -3,7 +3,9 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.UpdateSignPacket;
 
-public class UpdateSignPacketData extends Packet {
+import java.util.Arrays;
+
+public class UpdateSignPacketData extends Packet<UpdateSignPacket> {
 
     private int x;
     private int y;
@@ -34,7 +36,17 @@ public class UpdateSignPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) UpdateSignPacket.class;
+    public Class<UpdateSignPacket> getPacketClass() {
+        return UpdateSignPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "UpdateSignPacketData{"
+                + "x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", signLines=" + Arrays.toString(signLines)
+                + '}';
     }
 }

@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.UpdateTimePacket;
 
-public class UpdateTimePacketData extends Packet {
+public class UpdateTimePacketData extends Packet<UpdateTimePacket> {
 
     private long time;
 
@@ -16,7 +16,14 @@ public class UpdateTimePacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) UpdateTimePacket.class;
+    public Class<UpdateTimePacket> getPacketClass() {
+        return UpdateTimePacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "UpdateTimePacketData{"
+                + "time=" + time
+                + '}';
     }
 }

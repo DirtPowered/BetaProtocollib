@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.UpdateHealthPacket;
 
-public class UpdateHealthPacketData extends Packet {
+public class UpdateHealthPacketData extends Packet<UpdateHealthPacket> {
 
     private int health;
     private int food;
@@ -28,7 +28,16 @@ public class UpdateHealthPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) UpdateHealthPacket.class;
+    public Class<UpdateHealthPacket> getPacketClass() {
+        return UpdateHealthPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "UpdateHealthPacketData{"
+                + "health=" + health
+                + ", food=" + food
+                + ", saturation=" + saturation
+                + '}';
     }
 }

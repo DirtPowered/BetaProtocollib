@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.ChatPacket;
 
-public class ChatPacketData extends Packet {
+public class ChatPacketData extends Packet<ChatPacket> {
 
     private String message;
 
@@ -16,7 +16,14 @@ public class ChatPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) ChatPacket.class;
+    public Class<ChatPacket> getPacketClass() {
+        return ChatPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "ChatPacketData{"
+                + "message='" + message + '\''
+                + '}';
     }
 }

@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.TransactionPacket;
 
-public class TransactionPacketData extends Packet {
+public class TransactionPacketData extends Packet<TransactionPacket> {
 
     private int windowId;
     private int shortWindowId;
@@ -29,7 +29,16 @@ public class TransactionPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) TransactionPacket.class;
+    public Class<TransactionPacket> getPacketClass() {
+        return TransactionPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionPacketData{"
+                + "windowId=" + windowId
+                + ", shortWindowId=" + shortWindowId
+                + ", accepted=" + accepted
+                + '}';
     }
 }

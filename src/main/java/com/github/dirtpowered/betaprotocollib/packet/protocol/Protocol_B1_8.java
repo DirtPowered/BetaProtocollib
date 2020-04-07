@@ -29,7 +29,6 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.MapDataPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.MobSpawnPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.MultiBlockChangePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.NamedEntitySpawnPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.OpenWindowPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PaintingPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PickupSpawnPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PlayNoteblockPacket;
@@ -54,11 +53,13 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.VehicleSpawnPa
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.WindowClickPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.WindowItemsPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.BedAndWeatherPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.CreativeItemGetPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.EntityEffectPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.ExperienceOrbPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.ExperienceUpdatePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.KeepAlivePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.LoginPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.OpenWindowPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.PlayerListItemPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.RemoveEntityEffectPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.UpdateHealthPacket;
@@ -129,5 +130,6 @@ public class Protocol_B1_8 {
         registry.registerPacket(0x2A, RemoveEntityEffectPacket.class);
         registry.registerPacket(0x2B, ExperienceUpdatePacket.class);
         registry.registerPacket(0x1A, ExperienceOrbPacket.class);
+        registry.registerPacket(0x6B, CreativeItemGetPacket.class);
     }
 }

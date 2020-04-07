@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.EntityPositionPacket;
 
-public class EntityPositionPacketData extends Packet {
+public class EntityPositionPacketData extends Packet<EntityPositionPacket> {
 
     private int entityId;
     private int x;
@@ -34,7 +34,17 @@ public class EntityPositionPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) EntityPositionPacket.class;
+    public Class<EntityPositionPacket> getPacketClass() {
+        return EntityPositionPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "EntityPositionPacketData{"
+                + "entityId=" + entityId
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + '}';
     }
 }

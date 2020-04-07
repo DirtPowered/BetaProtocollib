@@ -3,7 +3,9 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.MultiBlockChangePacket;
 
-public class MultiBlockChangePacketData extends Packet {
+import java.util.Arrays;
+
+public class MultiBlockChangePacketData extends Packet<MultiBlockChangePacket> {
 
     private int x;
     private int z;
@@ -47,7 +49,19 @@ public class MultiBlockChangePacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) MultiBlockChangePacket.class;
+    public Class<MultiBlockChangePacket> getPacketClass() {
+        return MultiBlockChangePacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "MultiBlockChangePacketData{"
+                + "x=" + x
+                + ", z=" + z
+                + ", coordinateArray=" + Arrays.toString(coordinateArray)
+                + ", typeArray=" + Arrays.toString(typeArray)
+                + ", metadataArray=" + Arrays.toString(metadataArray)
+                + ", size=" + size
+                + '}';
     }
 }

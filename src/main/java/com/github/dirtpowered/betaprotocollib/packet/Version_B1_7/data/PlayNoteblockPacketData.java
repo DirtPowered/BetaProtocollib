@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PlayNoteblockPacket;
 
-public class PlayNoteblockPacketData extends Packet {
+public class PlayNoteblockPacketData extends Packet<PlayNoteblockPacket> {
 
     private int x;
     private int y;
@@ -40,7 +40,18 @@ public class PlayNoteblockPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) PlayNoteblockPacket.class;
+    public Class<PlayNoteblockPacket> getPacketClass() {
+        return PlayNoteblockPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayNoteblockPacketData{"
+                + "x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", instrumentType=" + instrumentType
+                + ", pitch=" + pitch
+                + '}';
     }
 }

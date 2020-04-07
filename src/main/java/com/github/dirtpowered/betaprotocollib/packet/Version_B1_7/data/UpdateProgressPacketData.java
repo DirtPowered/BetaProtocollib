@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.UpdateProgressPacket;
 
-public class UpdateProgressPacketData extends Packet {
+public class UpdateProgressPacketData extends Packet<UpdateProgressPacket> {
 
     private int windowId;
     private int progressBar;
@@ -28,7 +28,16 @@ public class UpdateProgressPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) UpdateProgressPacket.class;
+    public Class<UpdateProgressPacket> getPacketClass() {
+        return UpdateProgressPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "UpdateProgressPacketData{"
+                + "windowId=" + windowId
+                + ", progressBar=" + progressBar
+                + ", progressBarValue=" + progressBarValue
+                + '}';
     }
 }

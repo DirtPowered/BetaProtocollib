@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.RespawnPacket;
 
-public class RespawnPacketData extends Packet {
+public class RespawnPacketData extends Packet<RespawnPacket> {
 
     private byte dimension;
 
@@ -16,7 +16,14 @@ public class RespawnPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) RespawnPacket.class;
+    public Class<RespawnPacket> getPacketClass() {
+        return RespawnPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "RespawnPacketData{"
+                + "dimension=" + dimension
+                + '}';
     }
 }

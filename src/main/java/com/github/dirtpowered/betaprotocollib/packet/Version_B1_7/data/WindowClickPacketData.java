@@ -4,7 +4,7 @@ import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.WindowClickPacket;
 
-public class WindowClickPacketData extends Packet {
+public class WindowClickPacketData extends Packet<WindowClickPacket> {
     private int windowId;
     private int inventorySlot;
     private int mouseClick;
@@ -46,7 +46,19 @@ public class WindowClickPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) WindowClickPacket.class;
+    public Class<WindowClickPacket> getPacketClass() {
+        return WindowClickPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "WindowClickPacketData{"
+                + "windowId=" + windowId
+                + ", inventorySlot=" + inventorySlot
+                + ", mouseClick=" + mouseClick
+                + ", action=" + action
+                + ", itemStack=" + itemStack
+                + ", shiftPressed=" + shiftPressed
+                + '}';
     }
 }

@@ -3,7 +3,7 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.SleepPacket;
 
-public class SleepPacketData extends Packet {
+public class SleepPacketData extends Packet<SleepPacket> {
     private int entityId;
     private boolean wakeup;
     private int x;
@@ -39,7 +39,18 @@ public class SleepPacketData extends Packet {
     }
 
     @Override
-    public <T> Class<T> getPacketClass() {
-        return (Class<T>) SleepPacket.class;
+    public Class<SleepPacket> getPacketClass() {
+        return SleepPacket.class;
+    }
+
+    @Override
+    public String toString() {
+        return "SleepPacketData{"
+                + "entityId=" + entityId
+                + ", wakeup=" + wakeup
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + '}';
     }
 }
