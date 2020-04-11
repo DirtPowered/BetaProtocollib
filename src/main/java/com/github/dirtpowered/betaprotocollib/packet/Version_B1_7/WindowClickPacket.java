@@ -43,11 +43,11 @@ public class WindowClickPacket extends AbstractPacket<WindowClickPacketData> {
 
         BetaItemStack itemStack;
 
-        short var2 = buffer.readShort();
-        if (var2 >= 0) {
-            byte var3 = buffer.readByte();
-            short var4 = buffer.readShort();
-            itemStack = new BetaItemStack(var2, var3, var4);
+        short itemId = buffer.readShort();
+        if (itemId != -1) {
+            byte amount = buffer.readByte();
+            short data = buffer.readShort();
+            itemStack = new BetaItemStack(itemId, amount, data);
         } else {
             itemStack = null;
         }

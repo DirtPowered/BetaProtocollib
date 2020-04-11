@@ -13,7 +13,7 @@ public class BetaLib {
 
         //register packets
         switch (version) {
-            case B1_7_3:
+            case B_1_7_3:
                 new Protocol_B1_7(registry);
                 break;
             case B_1_8_1:

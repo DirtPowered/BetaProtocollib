@@ -32,6 +32,10 @@ public class BetaItemStack {
         this.blockId = blockId;
     }
 
+    public void setData(int data) {
+        this.data = data;
+    }
+
     public int getAmount() {
         return amount;
     }

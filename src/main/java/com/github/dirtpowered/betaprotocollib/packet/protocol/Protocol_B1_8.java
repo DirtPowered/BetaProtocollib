@@ -37,7 +37,6 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PlayerLookMove
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PlayerLookPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PlayerPositionPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.PreChunkPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.RespawnPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.SetSlotPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.SleepPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.SoundEffectPacket;
@@ -62,6 +61,7 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.LoginPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.OpenWindowPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.PlayerListItemPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.RemoveEntityEffectPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.RespawnPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.ServerListPingPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.UpdateHealthPacket;
 import com.github.dirtpowered.betaprotocollib.registry.PacketRegistry;
