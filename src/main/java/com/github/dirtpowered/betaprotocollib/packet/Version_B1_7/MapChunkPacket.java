@@ -54,18 +54,24 @@ public class MapChunkPacket extends AbstractPacket<MapChunkPacketData> {
 
         int chunkSize = buffer.readInt();
         byte[] buf = new byte[chunkSize];
-        byte[] chunk = new byte[xSize * ySize * zSize * 5 / 2];
 
-        buffer.readBytes(buf);
+        byte[] chunk;
+        if (xSize < 0 || ySize < 0 || zSize < 0) {
+            chunk = new byte[81920];
+            buffer.readBytes(buf);
+        } else {
+            chunk = new byte[xSize * ySize * zSize * 5 / 2];
+            buffer.readBytes(buf);
 
-        Inflater inflater = new Inflater();
-        inflater.setInput(buf);
-        try {
-            inflater.inflate(chunk);
-        } catch (DataFormatException var8) {
-            throw new IOException("Bad compressed data format");
-        } finally {
-            inflater.end();
+            Inflater inflater = new Inflater();
+            inflater.setInput(buf);
+            try {
+                inflater.inflate(chunk);
+            } catch (DataFormatException var8) {
+                throw new IOException("Bad compressed data format");
+            } finally {
+                inflater.end();
+            }
         }
 
         return new MapChunkPacketData(x, y, z, xSize, ySize, zSize, chunk);
