@@ -19,9 +19,9 @@ public class VehicleSpawnPacket extends AbstractPacket<VehicleSpawnPacketData> {
         buffer.writeInt(packet.getX());
         buffer.writeInt(packet.getY());
         buffer.writeInt(packet.getZ());
-        buffer.writeInt(packet.getVelocity());
+        buffer.writeInt(packet.getThrowerEntityId());
 
-        if (packet.getVelocity() > 0) {
+        if (packet.getThrowerEntityId() > 0) {
             buffer.writeShort(packet.getVelocityX());
             buffer.writeShort(packet.getVelocityY());
             buffer.writeShort(packet.getVelocityZ());
@@ -36,16 +36,16 @@ public class VehicleSpawnPacket extends AbstractPacket<VehicleSpawnPacketData> {
         int x = buffer.readInt();
         int y = buffer.readInt();
         int z = buffer.readInt();
-        int hasVelocity = buffer.readInt();
+        int throwerEntityId = buffer.readInt();
         int velocityX = 0;
         int velocityY = 0;
         int velocityZ = 0;
 
-        if (hasVelocity > 0) {
+        if (throwerEntityId > 0) {
             velocityX = buffer.readShort();
             velocityY = buffer.readShort();
             velocityZ = buffer.readShort();
         }
-        return new VehicleSpawnPacketData(entityId, type, x, y, z, hasVelocity, velocityX, velocityY, velocityZ);
+        return new VehicleSpawnPacketData(entityId, type, x, y, z, throwerEntityId, velocityX, velocityY, velocityZ);
     }
 }

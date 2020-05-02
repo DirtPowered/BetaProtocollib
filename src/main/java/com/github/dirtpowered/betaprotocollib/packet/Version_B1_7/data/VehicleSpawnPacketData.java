@@ -13,22 +13,22 @@ public class VehicleSpawnPacketData extends Packet<VehicleSpawnPacket> {
     private int velocityX;
     private int velocityY;
     private int velocityZ;
-    private int velocity;
+    private int throwerEntityId;
 
-    public VehicleSpawnPacketData(int entityId, int type, int x, int y, int z, int velocity, int velocityX, int velocityY, int velocityZ) {
+    public VehicleSpawnPacketData(int entityId, int type, int x, int y, int z, int throwerEntityId, int velocityX, int velocityY, int velocityZ) {
         this.entityId = entityId;
         this.type = type;
         this.x = x;
         this.y = y;
         this.z = z;
-        this.velocity = velocity;
+        this.throwerEntityId = throwerEntityId;
         this.velocityX = velocityX;
         this.velocityY = velocityY;
         this.velocityZ = velocityZ;
     }
 
-    public int getVelocity() {
-        return velocity;
+    public int getThrowerEntityId() {
+        return throwerEntityId;
     }
 
     public int getVelocityX() {
@@ -79,7 +79,7 @@ public class VehicleSpawnPacketData extends Packet<VehicleSpawnPacket> {
                 + ", velocityX=" + velocityX
                 + ", velocityY=" + velocityY
                 + ", velocityZ=" + velocityZ
-                + ", velocity=" + velocity
+                + ", throwerEntityId=" + throwerEntityId
                 + '}';
     }
 }
