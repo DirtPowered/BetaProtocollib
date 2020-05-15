@@ -1,14 +1,14 @@
 package com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.data;
 
 import com.github.dirtpowered.betaprotocollib.model.Packet;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.ExperienceUpdatePacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.ExperienceUpdatePacket;
 
 public class ExperienceUpdatePacketData extends Packet<ExperienceUpdatePacket> {
     private float progress;
-    private float level;
+    private short level;
     private short totalExperience;
 
-    public ExperienceUpdatePacketData(float progress, float level, short totalExperience) {
+    public ExperienceUpdatePacketData(float progress, short level, short totalExperience) {
         this.progress = progress;
         this.level = level;
         this.totalExperience = totalExperience;
@@ -18,7 +18,7 @@ public class ExperienceUpdatePacketData extends Packet<ExperienceUpdatePacket> {
         return progress;
     }
 
-    public float getLevel() {
+    public short getLevel() {
         return level;
     }
 

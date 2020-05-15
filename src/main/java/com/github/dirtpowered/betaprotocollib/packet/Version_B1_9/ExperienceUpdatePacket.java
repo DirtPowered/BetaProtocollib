@@ -15,7 +15,7 @@ public class ExperienceUpdatePacket extends AbstractPacket<ExperienceUpdatePacke
     public ByteBuf writePacketData(ExperienceUpdatePacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeFloat(packet.getProgress());
-        buffer.writeFloat(packet.getLevel());
+        buffer.writeShort(packet.getLevel());
         buffer.writeShort(packet.getTotalExperience());
         return buffer;
     }
@@ -23,7 +23,7 @@ public class ExperienceUpdatePacket extends AbstractPacket<ExperienceUpdatePacke
     @Override
     public ExperienceUpdatePacketData readPacketData(ByteBuf buffer) {
         float progress = buffer.readFloat();
-        float level = buffer.readFloat();
+        short level = buffer.readShort();
         short totalExperience = buffer.readShort();
         return new ExperienceUpdatePacketData(progress, level, totalExperience);
     }
