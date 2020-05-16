@@ -15,4 +15,8 @@ public enum MinecraftVersion {
     public int getProtocolVersion() {
         return protocolVersion;
     }
+
+    public boolean isNewerOrEqual(MinecraftVersion version) {
+        return version.getProtocolVersion() >= getProtocolVersion();
+    }
 }
