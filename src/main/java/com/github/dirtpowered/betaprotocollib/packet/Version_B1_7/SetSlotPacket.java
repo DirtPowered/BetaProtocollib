@@ -15,15 +15,17 @@ public class SetSlotPacket extends AbstractPacket<SetSlotPacketData> {
     @Override
     public ByteBuf writePacketData(SetSlotPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
+        BetaItemStack item = packet.getItemStack();
+
         buffer.writeByte(packet.getWindowId());
         buffer.writeShort(packet.getItemSlot());
 
-        if (packet.getItemStack() == null || packet.getItemStack().getBlockId() == 0) {
+        if (item == null || item.getBlockId() == 0) {
             buffer.writeShort(-1);
         } else {
-            buffer.writeShort(packet.getItemStack().getBlockId());
-            buffer.writeByte(packet.getItemStack().getAmount());
-            buffer.writeShort(packet.getItemStack().getData());
+            buffer.writeShort(item.getBlockId());
+            buffer.writeByte(item.getAmount());
+            buffer.writeShort(item.getData());
         }
 
         return buffer;

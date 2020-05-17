@@ -17,13 +17,14 @@ public class WindowItemsPacket extends AbstractPacket<WindowItemsPacketData> {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeByte(packet.getWindowId());
         buffer.writeShort(packet.getItemStacks().length);
+
         for (BetaItemStack item : packet.getItemStacks()) {
             if (item == null || item.getBlockId() == 0) {
                 buffer.writeShort(-1);
             } else {
                 buffer.writeShort(item.getBlockId());
                 buffer.writeByte(item.getAmount());
-                buffer.writeByte(item.getData());
+                buffer.writeShort(item.getData());
             }
         }
         return buffer;
@@ -32,15 +33,15 @@ public class WindowItemsPacket extends AbstractPacket<WindowItemsPacketData> {
     @Override
     public WindowItemsPacketData readPacketData(ByteBuf buffer) {
         int windowId = buffer.readByte();
-        short var2 = buffer.readShort();
-        BetaItemStack[] itemStack = new BetaItemStack[var2];
+        short windowSlots = buffer.readShort();
+        BetaItemStack[] itemStack = new BetaItemStack[windowSlots];
 
-        for (int var3 = 0; var3 < var2; ++var3) {
-            short var4 = buffer.readShort();
-            if (var4 >= 0) {
-                byte var5 = buffer.readByte();
-                short var6 = buffer.readShort();
-                itemStack[var3] = new BetaItemStack(var4, var5, var6);
+        for (int slot = 0; slot < windowSlots; ++slot) {
+            short itemId = buffer.readShort();
+            if (itemId >= 0) {
+                byte amount = buffer.readByte();
+                short data = buffer.readShort();
+                itemStack[slot] = new BetaItemStack(itemId, amount, data);
             }
         }
         return new WindowItemsPacketData(windowId, itemStack);
