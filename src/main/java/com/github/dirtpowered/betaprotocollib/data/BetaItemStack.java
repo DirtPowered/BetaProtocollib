@@ -1,10 +1,15 @@
 package com.github.dirtpowered.betaprotocollib.data;
 
+import com.github.dirtpowered.betaprotocollib.data.nbt.Tag;
+
+import java.util.Map;
+
 public class BetaItemStack {
 
     private int blockId;
     private int amount;
     private int data;
+    private Map<String, Tag> nbt;
 
     public BetaItemStack() {
         this.blockId = 0;
@@ -22,6 +27,13 @@ public class BetaItemStack {
         this.blockId = blockId;
         this.amount = amount;
         this.data = data;
+    }
+
+    public BetaItemStack(int blockId, int amount, int data, Map<String, Tag> nbtTags) {
+        this.blockId = blockId;
+        this.amount = amount;
+        this.data = data;
+        this.nbt = nbtTags;
     }
 
     public int getBlockId() {
@@ -44,12 +56,17 @@ public class BetaItemStack {
         this.data = data;
     }
 
+    public Map<String, Tag> getNbt() {
+        return nbt;
+    }
+
     @Override
     public String toString() {
         return "BetaItemStack{"
                 + "blockId=" + blockId
                 + ", amount=" + amount
                 + ", data=" + data
+                + ", nbt=" + nbt
                 + '}';
     }
 }

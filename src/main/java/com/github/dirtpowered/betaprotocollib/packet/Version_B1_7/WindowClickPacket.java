@@ -23,13 +23,7 @@ public class WindowClickPacket extends AbstractPacket<WindowClickPacketData> {
         buffer.writeShort(packet.getAction());
         buffer.writeBoolean(packet.isShiftPressed());
 
-        if (item == null || item.getBlockId() == 0) {
-            buffer.writeShort(-1);
-        } else {
-            buffer.writeShort(item.getBlockId());
-            buffer.writeByte(item.getAmount());
-            buffer.writeShort(item.getData());
-        }
+        writeItemStack(buffer, item);
         return buffer;
     }
 
@@ -41,16 +35,7 @@ public class WindowClickPacket extends AbstractPacket<WindowClickPacketData> {
         short action = buffer.readShort();
         boolean shiftPressed = buffer.readBoolean();
 
-        BetaItemStack itemStack;
-
         short itemId = buffer.readShort();
-        if (itemId != -1) {
-            byte amount = buffer.readByte();
-            short data = buffer.readShort();
-            itemStack = new BetaItemStack(itemId, amount, data);
-        } else {
-            itemStack = null;
-        }
-        return new WindowClickPacketData(windowId, inventorySlot, mouseClick, action, itemStack, shiftPressed);
+        return new WindowClickPacketData(windowId, inventorySlot, mouseClick, action, readItemStack(buffer, itemId), shiftPressed);
     }
 }

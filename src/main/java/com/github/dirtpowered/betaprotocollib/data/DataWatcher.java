@@ -31,9 +31,7 @@ public class DataWatcher {
                     break;
                 case 5:
                     BetaItemStack itemStack = (BetaItemStack) watchableObject.getValue();
-                    buffer.writeShort(itemStack.getBlockId());
-                    buffer.writeByte(itemStack.getAmount());
-                    buffer.writeShort(itemStack.getData());
+                    AbstractPacket.writeItemStack(buffer, itemStack);
                     break;
                 case 6:
                     BlockLocation location = (BlockLocation) watchableObject.getValue();

@@ -15,18 +15,14 @@ public class BlockPlacePacket extends AbstractPacket<BlockPlacePacketData> {
     @Override
     public ByteBuf writePacketData(BlockPlacePacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
+        BetaItemStack item = packet.getItemStack();
+
         buffer.writeInt(packet.getX());
         buffer.writeByte(packet.getY());
         buffer.writeInt(packet.getZ());
         buffer.writeByte(packet.getDirection());
 
-        if (packet.getItemStack() == null || packet.getItemStack().getBlockId() == 0) {
-            buffer.writeShort(-1);
-        } else {
-            buffer.writeShort(packet.getItemStack().getBlockId());
-            buffer.writeByte(packet.getItemStack().getAmount());
-            buffer.writeShort(packet.getItemStack().getData());
-        }
+        writeItemStack(buffer, item);
         return buffer;
     }
 
@@ -37,15 +33,8 @@ public class BlockPlacePacket extends AbstractPacket<BlockPlacePacketData> {
         int z = buffer.readInt();
         int direction = buffer.readByte();
 
-        BetaItemStack itemStack = null;
         int itemId = buffer.readShort();
 
-        if (itemId >= 0) {
-            int stackSize = buffer.readByte();
-            int itemData = buffer.readShort();
-            itemStack = new BetaItemStack(itemId, stackSize, itemData);
-        }
-
-        return new BlockPlacePacketData(x, y, z, direction, itemStack);
+        return new BlockPlacePacketData(x, y, z, direction, readItemStack(buffer, itemId));
     }
 }

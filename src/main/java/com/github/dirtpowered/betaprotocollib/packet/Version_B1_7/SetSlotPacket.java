@@ -20,14 +20,7 @@ public class SetSlotPacket extends AbstractPacket<SetSlotPacketData> {
         buffer.writeByte(packet.getWindowId());
         buffer.writeShort(packet.getItemSlot());
 
-        if (item == null || item.getBlockId() == 0) {
-            buffer.writeShort(-1);
-        } else {
-            buffer.writeShort(item.getBlockId());
-            buffer.writeByte(item.getAmount());
-            buffer.writeShort(item.getData());
-        }
-
+        writeItemStack(buffer, item);
         return buffer;
     }
 
@@ -35,16 +28,8 @@ public class SetSlotPacket extends AbstractPacket<SetSlotPacketData> {
     public SetSlotPacketData readPacketData(ByteBuf buffer) {
         int windowId = buffer.readByte();
         int itemSlot = buffer.readShort();
-        BetaItemStack itemStack = null;
 
         int itemId = buffer.readShort();
-
-        if (itemId >= 0) {
-            int stackSize = buffer.readByte();
-            int itemData = buffer.readShort();
-            itemStack = new BetaItemStack(itemId, stackSize, itemData);
-        }
-
-        return new SetSlotPacketData(windowId, itemSlot, itemStack);
+        return new SetSlotPacketData(windowId, itemSlot, readItemStack(buffer, itemId));
     }
 }

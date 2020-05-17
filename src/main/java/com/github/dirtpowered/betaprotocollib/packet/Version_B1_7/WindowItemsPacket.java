@@ -19,13 +19,7 @@ public class WindowItemsPacket extends AbstractPacket<WindowItemsPacketData> {
         buffer.writeShort(packet.getItemStacks().length);
 
         for (BetaItemStack item : packet.getItemStacks()) {
-            if (item == null || item.getBlockId() == 0) {
-                buffer.writeShort(-1);
-            } else {
-                buffer.writeShort(item.getBlockId());
-                buffer.writeByte(item.getAmount());
-                buffer.writeShort(item.getData());
-            }
+            writeItemStack(buffer, item);
         }
         return buffer;
     }
@@ -38,11 +32,7 @@ public class WindowItemsPacket extends AbstractPacket<WindowItemsPacketData> {
 
         for (int slot = 0; slot < windowSlots; ++slot) {
             short itemId = buffer.readShort();
-            if (itemId >= 0) {
-                byte amount = buffer.readByte();
-                short data = buffer.readShort();
-                itemStack[slot] = new BetaItemStack(itemId, amount, data);
-            }
+            itemStack[slot] = readItemStack(buffer, itemId);
         }
         return new WindowItemsPacketData(windowId, itemStack);
     }

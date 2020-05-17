@@ -8,10 +8,11 @@ import com.github.dirtpowered.betaprotocollib.registry.PacketRegistry;
 
 public class BetaLib {
     private static PacketRegistry registry;
+    private static MinecraftVersion _version;
 
     public static void inject(MinecraftVersion version) {
         registry = new PacketRegistry();
-
+        _version = version;
         //register packets
         switch (version) {
             case B_1_6_6:
@@ -31,5 +32,9 @@ public class BetaLib {
 
     public static PacketRegistry getRegistry() {
         return registry;
+    }
+
+    public static MinecraftVersion getVersion() {
+        return _version;
     }
 }

@@ -1,5 +1,8 @@
 package com.github.dirtpowered.betaprotocollib.model;
 
+import com.github.dirtpowered.betaprotocollib.BetaLib;
+import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
+import com.github.dirtpowered.betaprotocollib.data.version.MinecraftVersion;
 import io.netty.buffer.ByteBuf;
 import org.pmw.tinylog.Logger;
 
@@ -38,6 +41,34 @@ public abstract class AbstractPacket<T extends Packet> {
         }
 
         return null;
+    }
+
+    protected static BetaItemStack readItemStack(ByteBuf buffer, int itemId) {
+        BetaItemStack itemStack = null;
+        if (itemId >= 0) {
+            int stackSize = buffer.readByte();
+            int itemData = buffer.readShort();
+            if (MinecraftVersion.B_1_9.isNewerOrEqual(BetaLib.getVersion())) {
+                //TODO: Read NBT
+            }
+            itemStack = new BetaItemStack(itemId, stackSize, itemData);
+        }
+
+        return itemStack;
+    }
+
+    public static void writeItemStack(ByteBuf buffer, BetaItemStack item) {
+        if (item == null || item.getBlockId() == 0) {
+            buffer.writeShort(-1);
+        } else {
+            buffer.writeShort(item.getBlockId());
+            buffer.writeByte(item.getAmount());
+            buffer.writeShort(item.getData());
+
+            if (MinecraftVersion.B_1_9.isNewerOrEqual(BetaLib.getVersion())) {
+                //TODO: Write NBT
+            }
+        }
     }
 
     public final int getPacketId() {
