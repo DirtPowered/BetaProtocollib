@@ -20,7 +20,7 @@ public class BlockPlacePacket extends AbstractPacket<BlockPlacePacketData> {
         buffer.writeInt(packet.getZ());
         buffer.writeByte(packet.getDirection());
 
-        if (packet.getItemStack() == null) {
+        if (packet.getItemStack() == null || packet.getItemStack().getBlockId() == 0) {
             buffer.writeShort(-1);
         } else {
             buffer.writeShort(packet.getItemStack().getBlockId());

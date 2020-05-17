@@ -23,7 +23,7 @@ public class WindowClickPacket extends AbstractPacket<WindowClickPacketData> {
         buffer.writeShort(packet.getAction());
         buffer.writeBoolean(packet.isShiftPressed());
 
-        if (item == null) {
+        if (item == null || item.getBlockId() == 0) {
             buffer.writeShort(-1);
         } else {
             buffer.writeShort(item.getBlockId());

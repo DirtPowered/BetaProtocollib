@@ -18,7 +18,7 @@ public class WindowItemsPacket extends AbstractPacket<WindowItemsPacketData> {
         buffer.writeByte(packet.getWindowId());
         buffer.writeShort(packet.getItemStacks().length);
         for (BetaItemStack item : packet.getItemStacks()) {
-            if (item == null) {
+            if (item == null || item.getBlockId() == 0) {
                 buffer.writeShort(-1);
             } else {
                 buffer.writeShort(item.getBlockId());

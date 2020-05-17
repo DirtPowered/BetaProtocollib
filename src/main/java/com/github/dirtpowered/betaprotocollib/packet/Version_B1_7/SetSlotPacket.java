@@ -18,7 +18,7 @@ public class SetSlotPacket extends AbstractPacket<SetSlotPacketData> {
         buffer.writeByte(packet.getWindowId());
         buffer.writeShort(packet.getItemSlot());
 
-        if (packet.getItemStack() == null) {
+        if (packet.getItemStack() == null || packet.getItemStack().getBlockId() == 0) {
             buffer.writeShort(-1);
         } else {
             buffer.writeShort(packet.getItemStack().getBlockId());
