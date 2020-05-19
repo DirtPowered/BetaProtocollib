@@ -1,15 +1,12 @@
 package com.github.dirtpowered.betaprotocollib.data;
 
-import com.github.dirtpowered.betaprotocollib.data.nbt.Tag;
-
-import java.util.Map;
+import com.mojang.nbt.CompoundTag;
 
 public class BetaItemStack {
-
     private int blockId;
     private int amount;
     private int data;
-    private Map<String, Tag> nbt;
+    private CompoundTag nbt;
 
     public BetaItemStack() {
         this.blockId = 0;
@@ -29,7 +26,7 @@ public class BetaItemStack {
         this.data = data;
     }
 
-    public BetaItemStack(int blockId, int amount, int data, Map<String, Tag> nbtTags) {
+    public BetaItemStack(int blockId, int amount, int data, CompoundTag nbtTags) {
         this.blockId = blockId;
         this.amount = amount;
         this.data = data;
@@ -56,8 +53,16 @@ public class BetaItemStack {
         this.data = data;
     }
 
-    public Map<String, Tag> getNbt() {
+    public CompoundTag getNbt() {
         return nbt;
+    }
+
+    public boolean hasNbt() {
+        return nbt != null;
+    }
+
+    public void setNbt(CompoundTag nbt) {
+        this.nbt = nbt;
     }
 
     @Override

@@ -3,8 +3,10 @@ package com.github.dirtpowered.betaprotocollib.model;
 import com.github.dirtpowered.betaprotocollib.BetaLib;
 import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
 import com.github.dirtpowered.betaprotocollib.data.version.MinecraftVersion;
+import com.github.dirtpowered.betaprotocollib.utils.ItemUtil;
+import com.mojang.nbt.CompoundTag;
+import com.mojang.nbt.NbtIo;
 import io.netty.buffer.ByteBuf;
-import org.pmw.tinylog.Logger;
 
 import java.io.IOException;
 
@@ -17,7 +19,7 @@ public abstract class AbstractPacket<T extends Packet> {
 
     public static void writeString(String string, ByteBuf buffer) {
         if (string.length() > 32767) {
-            Logger.warn("String too big");
+            System.out.println("String too big");
         } else {
             buffer.writeShort(string.length());
             for (char c : string.toCharArray()) buffer.writeChar(c);
@@ -27,9 +29,9 @@ public abstract class AbstractPacket<T extends Packet> {
     public static String readString(ByteBuf buffer, int maxcap) {
         short size = buffer.readShort();
         if (size > maxcap) {
-            Logger.warn("Received string length longer than maximum allowed (" + size + " > " + /*27070*/maxcap + ")");
+            System.out.println("Received string length longer than maximum allowed (" + size + " > " + /*27070*/maxcap + ")");
         } else if (size < 0) {
-            Logger.warn("Received string length is less than zero! Weird string!");
+            System.out.println("Received string length is less than zero! Weird string!");
         } else {
             StringBuilder builder = new StringBuilder();
 
@@ -48,13 +50,36 @@ public abstract class AbstractPacket<T extends Packet> {
         if (itemId >= 0) {
             int stackSize = buffer.readByte();
             int itemData = buffer.readShort();
-            if (MinecraftVersion.B_1_9.isNewerOrEqual(BetaLib.getVersion())) {
-                //TODO: Read NBT
-            }
+
             itemStack = new BetaItemStack(itemId, stackSize, itemData);
+
+            if (MinecraftVersion.B_1_9.isNewerOrEqual(BetaLib.getVersion())) {
+                return readNBT(buffer, itemStack);
+            }
         }
 
         return itemStack;
+    }
+
+    private static BetaItemStack readNBT(ByteBuf buffer, BetaItemStack itemStack) {
+        if (!ItemUtil.isEnchantable(itemStack.getBlockId()))
+            return itemStack;
+
+        short size = buffer.readShort();
+
+        if (size < 0) {
+            return itemStack;
+        } else {
+            byte[] compressedNBT = new byte[size];
+            buffer.readBytes(compressedNBT);
+            try {
+                CompoundTag tag = NbtIo.decompress(compressedNBT);
+                itemStack.setNbt(tag);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return itemStack;
+        }
     }
 
     public static void writeItemStack(ByteBuf buffer, BetaItemStack item) {
@@ -66,9 +91,17 @@ public abstract class AbstractPacket<T extends Packet> {
             buffer.writeShort(item.getData());
 
             if (MinecraftVersion.B_1_9.isNewerOrEqual(BetaLib.getVersion())) {
-                //TODO: Write NBT
+                writeNBT(buffer, item);
             }
         }
+    }
+
+    private static void writeNBT(ByteBuf buffer, BetaItemStack itemStack) {
+        if (!ItemUtil.isEnchantable(itemStack.getBlockId())) {
+            return;
+        }
+
+        buffer.writeShort(-1); //TODO: send correct NBT Data
     }
 
     public final int getPacketId() {
