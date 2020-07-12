@@ -26,8 +26,12 @@ public class MobSpawnPacket extends AbstractPacket<MobSpawnPacketData> {
         buffer.writeInt(packet.getZ());
         buffer.writeByte(packet.getYaw());
         buffer.writeByte(packet.getPitch());
-        DataWatcher.writeMetadata(buffer, packet.getMetadata());
 
+        if (packet.getMetadata() == null || packet.getMetadata().isEmpty()) {
+            buffer.writeByte(127);
+        } else {
+            DataWatcher.writeMetadata(buffer, packet.getMetadata());
+        }
         return buffer;
     }
 
