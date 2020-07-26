@@ -18,15 +18,19 @@ public class CreativeItemGetPacket extends AbstractPacket<CreativeItemGetPacketD
         buffer.writeShort(packet.getSlotId());
         BetaItemStack item = packet.getItemStack();
 
-        writeItemStack(buffer, item);
+        buffer.writeShort(item.getBlockId());
+        buffer.writeShort(item.getAmount());
+        buffer.writeShort(item.getData());
         return buffer;
     }
 
     @Override
     public CreativeItemGetPacketData readPacketData(ByteBuf buffer) {
         short slotId = buffer.readShort();
-        int itemId = buffer.readShort();
+        int blockId = buffer.readShort();
+        int amount = buffer.readShort();
+        int data = buffer.readShort();
 
-        return new CreativeItemGetPacketData(slotId, readItemStack(buffer, itemId));
+        return new CreativeItemGetPacketData(slotId, new BetaItemStack(blockId, amount, data));
     }
 }
