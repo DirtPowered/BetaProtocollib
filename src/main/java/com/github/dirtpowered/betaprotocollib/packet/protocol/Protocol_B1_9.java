@@ -74,7 +74,6 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.VehicleSpawnPa
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.WindowClickPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.WindowItemsPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.BedAndWeatherPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.CreativeItemGetPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.EntityEffectPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.ExperienceOrbPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.KeepAlivePacket;
@@ -85,6 +84,7 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.RemoveEntityEf
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.RespawnPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.ServerListPingPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.UpdateHealthPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.CreativeItemGetPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.EnchantItemPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.ExperienceUpdatePacket;
 import com.github.dirtpowered.betaprotocollib.registry.PacketRegistry;
