@@ -22,9 +22,9 @@ public class MapChunkPacket extends AbstractPacket<MapChunkPacketData> {
         buffer.writeInt(packet.getX());
         buffer.writeShort(packet.getY());
         buffer.writeInt(packet.getZ());
-        buffer.writeByte(packet.getXSize());
-        buffer.writeByte(packet.getYSize());
-        buffer.writeByte(packet.getZSize());
+        buffer.writeByte(packet.getXSize() - 1);
+        buffer.writeByte(packet.getYSize() - 1);
+        buffer.writeByte(packet.getZSize() - 1);
 
         byte[] data = packet.getChunk();
         Deflater deflater = new Deflater(Deflater.BEST_SPEED);

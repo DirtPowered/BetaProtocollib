@@ -15,8 +15,8 @@ public class PlayerLookMovePacket extends AbstractPacket<PlayerLookMovePacketDat
     public ByteBuf writePacketData(PlayerLookMovePacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeDouble(packet.getX());
-        buffer.writeDouble(packet.getStance());
         buffer.writeDouble(packet.getY());
+        buffer.writeDouble(packet.getStance());
         buffer.writeDouble(packet.getZ());
         buffer.writeFloat(packet.getYaw());
         buffer.writeFloat(packet.getPitch());
