@@ -1,7 +1,7 @@
 package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7;
 
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.MapChunkPacketData;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.V1_7_3MapChunkPacketData;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
@@ -10,14 +10,14 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
-public class MapChunkPacket extends AbstractPacket<MapChunkPacketData> {
+public class MapChunkPacket extends AbstractPacket<V1_7_3MapChunkPacketData> {
 
     public MapChunkPacket() {
         super(0x33);
     }
 
     @Override
-    public ByteBuf writePacketData(MapChunkPacketData packet) {
+    public ByteBuf writePacketData(V1_7_3MapChunkPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeInt(packet.getX());
         buffer.writeShort(packet.getY());
@@ -44,7 +44,7 @@ public class MapChunkPacket extends AbstractPacket<MapChunkPacketData> {
     }
 
     @Override
-    public MapChunkPacketData readPacketData(ByteBuf buffer) throws IOException {
+    public V1_7_3MapChunkPacketData readPacketData(ByteBuf buffer) throws IOException {
         int x = buffer.readInt();
         int y = buffer.readShort();
         int z = buffer.readInt();
@@ -67,13 +67,13 @@ public class MapChunkPacket extends AbstractPacket<MapChunkPacketData> {
             inflater.setInput(buf);
             try {
                 inflater.inflate(chunk);
-            } catch (DataFormatException var8) {
+            } catch (DataFormatException e) {
                 throw new IOException("Bad compressed data format");
             } finally {
                 inflater.end();
             }
         }
 
-        return new MapChunkPacketData(x, y, z, xSize, ySize, zSize, chunk);
+        return new V1_7_3MapChunkPacketData(x, y, z, xSize, ySize, zSize, chunk);
     }
 }

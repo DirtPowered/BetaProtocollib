@@ -1,18 +1,18 @@
 package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7;
 
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.VehicleSpawnPacketData;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.V1_7_3VehicleSpawnPacketData;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
-public class VehicleSpawnPacket extends AbstractPacket<VehicleSpawnPacketData> {
+public class VehicleSpawnPacket extends AbstractPacket<V1_7_3VehicleSpawnPacketData> {
 
     public VehicleSpawnPacket() {
         super(0x17);
     }
 
     @Override
-    public ByteBuf writePacketData(VehicleSpawnPacketData packet) {
+    public ByteBuf writePacketData(V1_7_3VehicleSpawnPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeInt(packet.getEntityId());
         buffer.writeByte(packet.getType());
@@ -30,7 +30,7 @@ public class VehicleSpawnPacket extends AbstractPacket<VehicleSpawnPacketData> {
     }
 
     @Override
-    public VehicleSpawnPacketData readPacketData(ByteBuf buffer) {
+    public V1_7_3VehicleSpawnPacketData readPacketData(ByteBuf buffer) {
         int entityId = buffer.readInt();
         int type = buffer.readByte();
         int x = buffer.readInt();
@@ -46,6 +46,6 @@ public class VehicleSpawnPacket extends AbstractPacket<VehicleSpawnPacketData> {
             velocityY = buffer.readShort();
             velocityZ = buffer.readShort();
         }
-        return new VehicleSpawnPacketData(entityId, type, x, y, z, throwerEntityId, velocityX, velocityY, velocityZ);
+        return new V1_7_3VehicleSpawnPacketData(entityId, type, x, y, z, throwerEntityId, velocityX, velocityY, velocityZ);
     }
 }

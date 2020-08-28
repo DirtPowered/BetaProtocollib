@@ -1,5 +1,6 @@
 package com.github.dirtpowered.betaprotocollib.data;
 
+import com.github.dirtpowered.betaprotocollib.data.type.ItemStackType;
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
 import com.github.dirtpowered.betaprotocollib.utils.BlockLocation;
 import io.netty.buffer.ByteBuf;
@@ -31,7 +32,7 @@ public class DataWatcher {
                     break;
                 case 5:
                     BetaItemStack itemStack = (BetaItemStack) watchableObject.getValue();
-                    AbstractPacket.writeItemStack(buffer, itemStack);
+                    AbstractPacket.writeItemStack(buffer, itemStack, ItemStackType.ITEM_B1_7); //TODO: check
                     break;
                 case 6:
                     BlockLocation location = (BlockLocation) watchableObject.getValue();
@@ -40,18 +41,20 @@ public class DataWatcher {
                     buffer.writeInt(location.getZ());
             }
         }
+
+        buffer.writeByte(127);
     }
 
     public static List<WatchableObject> readMetadata(ByteBuf buffer) {
         ArrayList<WatchableObject> dataMap = null;
 
-        for (byte var2 = buffer.readByte(); var2 != 127; var2 = buffer.readByte()) {
+        for (byte b = buffer.readByte(); b != 127; b = buffer.readByte()) {
             if (dataMap == null) {
                 dataMap = new ArrayList<>();
             }
 
-            int type = (var2 & 224) >> 5;
-            int index = var2 & 0x1f;
+            int type = (b & 224) >> 5;
+            int index = b & 0x1f;
             WatchableObject value = null;
             switch (type) {
                 case 0:

@@ -8,7 +8,7 @@ import java.util.Map;
 public class PacketRegistry {
     private final Map<Integer, Class<? extends AbstractPacket>> packets = new HashMap<>();
 
-    public void registerPacket(int packetID, final Class<? extends AbstractPacket> clazz) {
+    protected void registerPacket(int packetID, final Class<? extends AbstractPacket> clazz) {
         packets.put(packetID, clazz);
     }
 

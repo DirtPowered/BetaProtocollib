@@ -1,18 +1,18 @@
 package com.github.dirtpowered.betaprotocollib.packet.Version_B1_8;
 
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.data.LoginPacketData;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.data.V1_8_1LoginPacketData;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
-public class LoginPacket extends AbstractPacket<LoginPacketData> {
+public class LoginPacket extends AbstractPacket<V1_8_1LoginPacketData> {
 
     public LoginPacket() {
         super(0x01);
     }
 
     @Override
-    public ByteBuf writePacketData(LoginPacketData packet) {
+    public ByteBuf writePacketData(V1_8_1LoginPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeInt(packet.getEntityId());
         writeString(packet.getPlayerName(), buffer);
@@ -26,7 +26,7 @@ public class LoginPacket extends AbstractPacket<LoginPacketData> {
     }
 
     @Override
-    public LoginPacketData readPacketData(ByteBuf buffer) {
+    public V1_8_1LoginPacketData readPacketData(ByteBuf buffer) {
         int id = buffer.readInt();
         String playername = readString(buffer, 16);
         long seed = buffer.readLong();
@@ -36,6 +36,6 @@ public class LoginPacket extends AbstractPacket<LoginPacketData> {
         int worldHeight = buffer.readUnsignedByte();
         int maxPlayers = buffer.readUnsignedByte();
 
-        return new LoginPacketData(id, playername, seed, gamemode, dimension, difficulty, worldHeight, maxPlayers);
+        return new V1_8_1LoginPacketData(id, playername, seed, gamemode, dimension, difficulty, worldHeight, maxPlayers);
     }
 }

@@ -3,20 +3,20 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7;
 import com.github.dirtpowered.betaprotocollib.data.DataWatcher;
 import com.github.dirtpowered.betaprotocollib.data.WatchableObject;
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.MobSpawnPacketData;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.V1_7_3MobSpawnPacketData;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
 import java.util.List;
 
-public class MobSpawnPacket extends AbstractPacket<MobSpawnPacketData> {
+public class MobSpawnPacket extends AbstractPacket<V1_7_3MobSpawnPacketData> {
 
     public MobSpawnPacket() {
         super(0x18);
     }
 
     @Override
-    public ByteBuf writePacketData(MobSpawnPacketData packet) {
+    public ByteBuf writePacketData(V1_7_3MobSpawnPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
 
         buffer.writeInt(packet.getEntityId());
@@ -36,7 +36,7 @@ public class MobSpawnPacket extends AbstractPacket<MobSpawnPacketData> {
     }
 
     @Override
-    public MobSpawnPacketData readPacketData(ByteBuf buffer) {
+    public V1_7_3MobSpawnPacketData readPacketData(ByteBuf buffer) {
         int entityId = buffer.readInt();
         byte type = buffer.readByte();
         int x = buffer.readInt();
@@ -46,6 +46,6 @@ public class MobSpawnPacket extends AbstractPacket<MobSpawnPacketData> {
         byte pitch = buffer.readByte();
         List<WatchableObject> watchableObjects = DataWatcher.readMetadata(buffer);
 
-        return new MobSpawnPacketData(entityId, type, x, y, z, yaw, pitch, watchableObjects);
+        return new V1_7_3MobSpawnPacketData(entityId, type, x, y, z, yaw, pitch, watchableObjects);
     }
 }

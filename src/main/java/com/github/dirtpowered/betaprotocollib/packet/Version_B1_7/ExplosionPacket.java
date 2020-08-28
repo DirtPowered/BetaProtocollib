@@ -1,7 +1,7 @@
 package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7;
 
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.ExplosionPacketData;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.V1_7_3ExplosionPacketData;
 import com.github.dirtpowered.betaprotocollib.utils.BlockLocation;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -9,14 +9,14 @@ import io.netty.buffer.Unpooled;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExplosionPacket extends AbstractPacket<ExplosionPacketData> {
+public class ExplosionPacket extends AbstractPacket<V1_7_3ExplosionPacketData> {
 
     public ExplosionPacket() {
         super(0x3C);
     }
 
     @Override
-    public ByteBuf writePacketData(ExplosionPacketData packet) {
+    public ByteBuf writePacketData(V1_7_3ExplosionPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeDouble(packet.getX());
         buffer.writeDouble(packet.getY());
@@ -34,7 +34,7 @@ public class ExplosionPacket extends AbstractPacket<ExplosionPacketData> {
     }
 
     @Override
-    public ExplosionPacketData readPacketData(ByteBuf buffer) {
+    public V1_7_3ExplosionPacketData readPacketData(ByteBuf buffer) {
         double x = buffer.readDouble();
         double y = buffer.readDouble();
         double z = buffer.readDouble();
@@ -50,6 +50,6 @@ public class ExplosionPacket extends AbstractPacket<ExplosionPacketData> {
             records.add(new BlockLocation(locX, locY, locZ));
         }
 
-        return new ExplosionPacketData(x, y, z, explosionSize, records);
+        return new V1_7_3ExplosionPacketData(x, y, z, explosionSize, records);
     }
 }
