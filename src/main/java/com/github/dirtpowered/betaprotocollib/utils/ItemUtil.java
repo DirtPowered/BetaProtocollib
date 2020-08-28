@@ -3,10 +3,10 @@ package com.github.dirtpowered.betaprotocollib.utils;
 import java.util.Arrays;
 
 public class ItemUtil {
-    private static int[] itemsWithNBT;
+    private static int[] damageableItems;
 
     static {
-        itemsWithNBT = new int[]{
+        damageableItems = new int[]{
                 259, 261, 346, 359, 268, 269, 270, 271,
                 290, 291, 292, 293, 314, 315, 316, 317,
                 272, 273, 274, 275, 267, 256, 257, 258,
@@ -16,7 +16,7 @@ public class ItemUtil {
         };
     }
 
-    public static boolean isEnchantable(int itemId) {
-        return Arrays.stream(itemsWithNBT).anyMatch(i -> i == itemId);
+    public static boolean isDamageable(int itemId) {
+        return Arrays.stream(damageableItems).anyMatch(i -> i == itemId);
     }
 }

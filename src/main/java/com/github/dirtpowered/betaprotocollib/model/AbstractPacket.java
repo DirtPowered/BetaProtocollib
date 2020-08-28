@@ -1,8 +1,7 @@
 package com.github.dirtpowered.betaprotocollib.model;
 
-import com.github.dirtpowered.betaprotocollib.BetaLib;
 import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
-import com.github.dirtpowered.betaprotocollib.data.version.MinecraftVersion;
+import com.github.dirtpowered.betaprotocollib.data.type.ItemStackType;
 import com.github.dirtpowered.betaprotocollib.utils.ItemUtil;
 import com.mojang.nbt.CompoundTag;
 import com.mojang.nbt.NbtIo;
@@ -15,6 +14,23 @@ public abstract class AbstractPacket<T extends Packet> {
 
     public AbstractPacket(final int packetId) {
         this.packetId = packetId;
+    }
+
+    protected static void writeByteArray(ByteBuf buffer, byte[] data) {
+        buffer.writeShort(data.length);
+        buffer.writeBytes(data);
+    }
+
+    protected static byte[] readByteArray(ByteBuf buffer) throws IOException {
+        short size = buffer.readShort();
+
+        if (size < 0) {
+            throw new IOException("Byte array with 0 length!");
+        } else {
+            byte[] data = new byte[size];
+            buffer.readBytes(data);
+            return data;
+        }
     }
 
     public static void writeString(String string, ByteBuf buffer) {
@@ -45,25 +61,27 @@ public abstract class AbstractPacket<T extends Packet> {
         return null;
     }
 
-    protected static BetaItemStack readItemStack(ByteBuf buffer, int itemId) {
+    protected static BetaItemStack readItemStack(ByteBuf buffer, int itemId, ItemStackType type) {
         BetaItemStack itemStack = null;
+
         if (itemId >= 0) {
             int stackSize = buffer.readByte();
             int itemData = buffer.readShort();
 
             itemStack = new BetaItemStack(itemId, stackSize, itemData);
 
-            if (MinecraftVersion.B_1_9.isNewerOrEqual(BetaLib.getVersion())) {
-                return readNBT(buffer, itemStack);
+            if (type == ItemStackType.ITEM_B1_9 || type == ItemStackType.ITEM_R1_3) {
+                return readNBT(buffer, itemStack, type);
             }
         }
 
         return itemStack;
     }
 
-    private static BetaItemStack readNBT(ByteBuf buffer, BetaItemStack itemStack) {
-        if (!ItemUtil.isEnchantable(itemStack.getBlockId()))
+    private static BetaItemStack readNBT(ByteBuf buffer, BetaItemStack itemStack, ItemStackType type) {
+        if (type == ItemStackType.ITEM_B1_9 && !ItemUtil.isDamageable(itemStack.getBlockId())) {
             return itemStack;
+        }
 
         short size = buffer.readShort();
 
@@ -82,7 +100,24 @@ public abstract class AbstractPacket<T extends Packet> {
         }
     }
 
-    public static void writeItemStack(ByteBuf buffer, BetaItemStack item) {
+    private static void writeNBT(ByteBuf buffer, BetaItemStack itemStack) {
+        if (!ItemUtil.isDamageable(itemStack.getBlockId()) && !itemStack.isOverrideDefault())
+            return;
+
+        try {
+            if (itemStack.hasNbt()) {
+                byte[] data = NbtIo.compress(itemStack.getNbt());
+                buffer.writeShort((short) data.length);
+                buffer.writeBytes(data);
+            } else {
+                buffer.writeShort(-1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeItemStack(ByteBuf buffer, BetaItemStack item, ItemStackType type) {
         if (item == null || item.getBlockId() == 0) {
             buffer.writeShort(-1);
         } else {
@@ -90,18 +125,10 @@ public abstract class AbstractPacket<T extends Packet> {
             buffer.writeByte(item.getAmount());
             buffer.writeShort(item.getData());
 
-            if (MinecraftVersion.B_1_9.isNewerOrEqual(BetaLib.getVersion())) {
+            if (type == ItemStackType.ITEM_B1_9 || type == ItemStackType.ITEM_R1_3) {
                 writeNBT(buffer, item);
             }
         }
-    }
-
-    private static void writeNBT(ByteBuf buffer, BetaItemStack itemStack) {
-        if (!ItemUtil.isEnchantable(itemStack.getBlockId())) {
-            return;
-        }
-
-        buffer.writeShort(-1); //TODO: send correct NBT Data
     }
 
     public final int getPacketId() {

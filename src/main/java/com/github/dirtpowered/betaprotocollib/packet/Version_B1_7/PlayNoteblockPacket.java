@@ -1,18 +1,18 @@
 package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7;
 
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.PlayNoteblockPacketData;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.V1_7_3PlayNoteblockPacketData;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
-public class PlayNoteblockPacket extends AbstractPacket<PlayNoteblockPacketData> {
+public class PlayNoteblockPacket extends AbstractPacket<V1_7_3PlayNoteblockPacketData> {
 
     public PlayNoteblockPacket() {
         super(0x36);
     }
 
     @Override
-    public ByteBuf writePacketData(PlayNoteblockPacketData packet) {
+    public ByteBuf writePacketData(V1_7_3PlayNoteblockPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeInt(packet.getX());
         buffer.writeShort(packet.getY());
@@ -23,13 +23,13 @@ public class PlayNoteblockPacket extends AbstractPacket<PlayNoteblockPacketData>
     }
 
     @Override
-    public PlayNoteblockPacketData readPacketData(ByteBuf buffer) {
+    public V1_7_3PlayNoteblockPacketData readPacketData(ByteBuf buffer) {
         int x = buffer.readInt();
         int y = buffer.readShort();
         int z = buffer.readInt();
         int instrumentType = buffer.readByte();
         int pitch = buffer.readByte();
 
-        return new PlayNoteblockPacketData(x, y, z, instrumentType, pitch);
+        return new V1_7_3PlayNoteblockPacketData(x, y, z, instrumentType, pitch);
     }
 }

@@ -23,20 +23,20 @@
 package com.github.dirtpowered.betaprotocollib.packet.Version_B1_9;
 
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.data.EnchantItemPacketData;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.data.V1_9EnchantItemPacketData;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
 import java.io.IOException;
 
-public class EnchantItemPacket extends AbstractPacket<EnchantItemPacketData> {
+public class EnchantItemPacket extends AbstractPacket<V1_9EnchantItemPacketData> {
 
     public EnchantItemPacket() {
         super(0x6C);
     }
 
     @Override
-    public ByteBuf writePacketData(EnchantItemPacketData packet) throws IOException {
+    public ByteBuf writePacketData(V1_9EnchantItemPacketData packet) throws IOException {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeByte(packet.getTransaction());
         buffer.writeByte(packet.getEnchantmentId());
@@ -44,9 +44,9 @@ public class EnchantItemPacket extends AbstractPacket<EnchantItemPacketData> {
     }
 
     @Override
-    public EnchantItemPacketData readPacketData(ByteBuf buffer) throws IOException {
+    public V1_9EnchantItemPacketData readPacketData(ByteBuf buffer) throws IOException {
         int transaction = buffer.readByte();
         int enchantmentId = buffer.readByte();
-        return new EnchantItemPacketData(transaction, enchantmentId);
+        return new V1_9EnchantItemPacketData(transaction, enchantmentId);
     }
 }

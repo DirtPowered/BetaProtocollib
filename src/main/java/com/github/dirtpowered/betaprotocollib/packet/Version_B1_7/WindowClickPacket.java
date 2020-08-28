@@ -1,19 +1,20 @@
 package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7;
 
 import com.github.dirtpowered.betaprotocollib.data.BetaItemStack;
+import com.github.dirtpowered.betaprotocollib.data.type.ItemStackType;
 import com.github.dirtpowered.betaprotocollib.model.AbstractPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.WindowClickPacketData;
+import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data.V1_7_3WindowClickPacketData;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
-public class WindowClickPacket extends AbstractPacket<WindowClickPacketData> {
+public class WindowClickPacket extends AbstractPacket<V1_7_3WindowClickPacketData> {
 
     public WindowClickPacket() {
         super(0x66);
     }
 
     @Override
-    public ByteBuf writePacketData(WindowClickPacketData packet) {
+    public ByteBuf writePacketData(V1_7_3WindowClickPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
         BetaItemStack item = packet.getItemStack();
 
@@ -23,12 +24,12 @@ public class WindowClickPacket extends AbstractPacket<WindowClickPacketData> {
         buffer.writeShort(packet.getAction());
         buffer.writeBoolean(packet.isShiftPressed());
 
-        writeItemStack(buffer, item);
+        writeItemStack(buffer, item, ItemStackType.ITEM_B1_7);
         return buffer;
     }
 
     @Override
-    public WindowClickPacketData readPacketData(ByteBuf buffer) {
+    public V1_7_3WindowClickPacketData readPacketData(ByteBuf buffer) {
         int windowId = buffer.readByte();
         int inventorySlot = buffer.readShort();
         int mouseClick = buffer.readByte();
@@ -36,6 +37,6 @@ public class WindowClickPacket extends AbstractPacket<WindowClickPacketData> {
         boolean shiftPressed = buffer.readBoolean();
 
         short itemId = buffer.readShort();
-        return new WindowClickPacketData(windowId, inventorySlot, mouseClick, action, readItemStack(buffer, itemId), shiftPressed);
+        return new V1_7_3WindowClickPacketData(windowId, inventorySlot, mouseClick, action, readItemStack(buffer, itemId, ItemStackType.ITEM_B1_7), shiftPressed);
     }
 }
