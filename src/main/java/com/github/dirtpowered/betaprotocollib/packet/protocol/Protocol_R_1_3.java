@@ -50,7 +50,6 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.CreativeItemGe
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.EnchantItemPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.ExperienceUpdatePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.SetSlotPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.WindowClickPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.WindowItemsPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_1.CustomPayloadPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_2.EntityHeadLookPacket;
@@ -71,6 +70,8 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.MapChunkPacket
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.MobSpawnPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.PlayerAbilitiesPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.RespawnPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.TabCompletePacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.WindowClickPacket;
 import com.github.dirtpowered.betaprotocollib.registry.PacketRegistry;
 
 public class Protocol_R_1_3 extends PacketRegistry {
@@ -147,5 +148,6 @@ public class Protocol_R_1_3 extends PacketRegistry {
         registerPacket(0xFC, EncryptionResponsePacket.class);
         registerPacket(0xCC, ClientSettingsPacket.class);
         registerPacket(0xCD, ClientCommandPacket.class);
+        registerPacket(0xCB, TabCompletePacket.class);
     }
 }
