@@ -16,7 +16,7 @@ public class ClientSettingsPacket extends AbstractPacket<V1_3ClientSettingsPacke
         ByteBuf buffer = Unpooled.buffer();
         writeString(packet.getLocale(), buffer);
         buffer.writeByte(packet.getViewDistance());
-        buffer.writeByte(packet.getChatFlags() | (packet.areColorsEnabled() ? 1 : 0) << 3);
+        buffer.writeByte(packet.getChatFlags() | (packet.isColorsEnabled() ? 1 : 0) << 3);
         buffer.writeByte(packet.getDifficulty());
         return buffer;
     }

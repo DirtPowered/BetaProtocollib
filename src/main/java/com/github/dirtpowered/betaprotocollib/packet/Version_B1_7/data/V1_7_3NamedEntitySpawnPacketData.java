@@ -2,9 +2,14 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.NamedEntitySpawnPacket;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@Data
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class V1_7_3NamedEntitySpawnPacketData extends Packet<NamedEntitySpawnPacket> {
-
     private int entityId;
     private String name;
     private int x;
@@ -14,65 +19,8 @@ public class V1_7_3NamedEntitySpawnPacketData extends Packet<NamedEntitySpawnPac
     private byte pitch;
     private int currentItem;
 
-    public V1_7_3NamedEntitySpawnPacketData(int entityId, String name, int x, int y, int z, byte rotation, byte pitch, int currentItem) {
-        this.entityId = entityId;
-        this.name = name;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.rotation = rotation;
-        this.pitch = pitch;
-        this.currentItem = currentItem;
-    }
-
-    public int getEntityId() {
-        return entityId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getZ() {
-        return z;
-    }
-
-    public byte getRotation() {
-        return rotation;
-    }
-
-    public byte getPitch() {
-        return pitch;
-    }
-
-    public int getCurrentItem() {
-        return currentItem;
-    }
-
     @Override
     public Class<NamedEntitySpawnPacket> getPacketClass() {
         return NamedEntitySpawnPacket.class;
-    }
-
-    @Override
-    public String toString() {
-        return "V1_7_3NamedEntitySpawnPacketData{"
-                + "entityId=" + entityId
-                + ", name='" + name + '\''
-                + ", x=" + x
-                + ", y=" + y
-                + ", z=" + z
-                + ", rotation=" + rotation
-                + ", pitch=" + pitch
-                + ", currentItem=" + currentItem
-                + '}';
     }
 }

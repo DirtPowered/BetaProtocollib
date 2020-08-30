@@ -2,48 +2,21 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.OpenWindowPacket;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@Data
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class V1_7_3OpenWindowPacketData extends Packet<OpenWindowPacket> {
     private int windowId;
     private int inventoryType;
     private String windowTitle;
     private int slotsCount;
 
-    public V1_7_3OpenWindowPacketData(int windowId, int inventoryType, String windowTitle, int slotsCount) {
-        this.windowId = windowId;
-        this.inventoryType = inventoryType;
-        this.windowTitle = windowTitle;
-        this.slotsCount = slotsCount;
-    }
-
-    public int getWindowId() {
-        return windowId;
-    }
-
-    public int getInventoryType() {
-        return inventoryType;
-    }
-
-    public String getWindowTitle() {
-        return windowTitle;
-    }
-
-    public int getSlotsCount() {
-        return slotsCount;
-    }
-
     @Override
     public Class<OpenWindowPacket> getPacketClass() {
         return OpenWindowPacket.class;
-    }
-
-    @Override
-    public String toString() {
-        return "V1_7_3OpenWindowPacketData{"
-                + "windowId=" + windowId
-                + ", inventoryType=" + inventoryType
-                + ", windowTitle='" + windowTitle + '\''
-                + ", slotsCount=" + slotsCount
-                + '}';
     }
 }
