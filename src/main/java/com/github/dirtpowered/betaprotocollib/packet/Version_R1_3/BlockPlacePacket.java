@@ -16,7 +16,7 @@ public class BlockPlacePacket extends AbstractPacket<V1_3BlockPlacePacketData> {
     @Override
     public ByteBuf writePacketData(V1_3BlockPlacePacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
-        BetaItemStack item = packet.getItemStack();
+        BetaItemStack item = packet.getBetaItemStack();
 
         buffer.writeInt(packet.getX());
         buffer.writeByte(packet.getY());

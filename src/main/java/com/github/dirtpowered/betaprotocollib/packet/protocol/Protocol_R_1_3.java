@@ -16,7 +16,6 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.EntityPosition
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.EntityStatusPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.EntityTeleportPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.EntityVelocityPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.ExplosionPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.FlyingPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.KickDisconnectPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.MapDataPacket;
@@ -49,13 +48,11 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_B1_8.UpdateHealthPa
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.CreativeItemGetPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.EnchantItemPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.ExperienceUpdatePacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.SetSlotPacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.WindowItemsPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_1.CustomPayloadPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_2.EntityHeadLookPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_2.MultiBlockChangePacket;
-import com.github.dirtpowered.betaprotocollib.packet.Version_R1_2.UpdateTileEntityPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.BlockActionPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.BlockBreakAnimationPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.BlockChangePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.BlockPlacePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.ClientCommandPacket;
@@ -64,14 +61,19 @@ import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.EncryptionRequ
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.EncryptionResponsePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.EntityDestroyPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.EntityEquipmentPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.ExplosionPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.HandshakePacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.LoginPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.MapChunkPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.MobSpawnPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.NamedSoundEffectPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.PlayerAbilitiesPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.RespawnPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.SetSlotPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.TabCompletePacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.UpdateTileEntityPacket;
 import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.WindowClickPacket;
+import com.github.dirtpowered.betaprotocollib.packet.Version_R1_3.WindowItemsPacket;
 import com.github.dirtpowered.betaprotocollib.registry.PacketRegistry;
 
 public class Protocol_R_1_3 extends PacketRegistry {
@@ -149,5 +151,7 @@ public class Protocol_R_1_3 extends PacketRegistry {
         registerPacket(0xCC, ClientSettingsPacket.class);
         registerPacket(0xCD, ClientCommandPacket.class);
         registerPacket(0xCB, TabCompletePacket.class);
+        registerPacket(0x37, BlockBreakAnimationPacket.class);
+        registerPacket(0x3E, NamedSoundEffectPacket.class);
     }
 }

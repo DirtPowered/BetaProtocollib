@@ -17,7 +17,7 @@ public class RespawnPacket extends AbstractPacket<V1_2RespawnPacketData> {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeInt(packet.getDimension());
         buffer.writeByte(packet.getDifficulty());
-        buffer.writeByte(packet.getGamemode());
+        buffer.writeByte(packet.getGameMode());
         buffer.writeShort(packet.getWorldHeight());
         writeString(packet.getWorldType().name(), buffer);
         return buffer;

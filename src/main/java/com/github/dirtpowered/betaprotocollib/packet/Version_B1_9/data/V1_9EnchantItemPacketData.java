@@ -24,34 +24,19 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.data;
 
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_9.EnchantItemPacket;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@Data
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class V1_9EnchantItemPacketData extends Packet<EnchantItemPacket> {
     private int transaction;
     private int enchantmentId;
 
-    public V1_9EnchantItemPacketData(int transaction, int enchantmentId) {
-        this.transaction = transaction;
-        this.enchantmentId = enchantmentId;
-    }
-
-    public int getTransaction() {
-        return transaction;
-    }
-
-    public int getEnchantmentId() {
-        return enchantmentId;
-    }
-
     @Override
     public Class<EnchantItemPacket> getPacketClass() {
         return EnchantItemPacket.class;
-    }
-
-    @Override
-    public String toString() {
-        return "V1_9EnchantItemPacketData{"
-                + "transaction=" + transaction
-                + ", enchantmentId=" + enchantmentId
-                + '}';
     }
 }

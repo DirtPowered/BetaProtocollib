@@ -7,22 +7,28 @@ import com.github.dirtpowered.betaprotocollib.packet.protocol.Protocol_B1_9;
 import com.github.dirtpowered.betaprotocollib.packet.protocol.Protocol_R_1_1;
 import com.github.dirtpowered.betaprotocollib.packet.protocol.Protocol_R_1_2;
 import com.github.dirtpowered.betaprotocollib.packet.protocol.Protocol_R_1_3;
+import com.github.dirtpowered.betaprotocollib.packet.protocol.Protocol_R_1_4;
 import com.github.dirtpowered.betaprotocollib.registry.PacketRegistry;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class BetaLib {
+
+    @Getter
     private static PacketRegistry registry;
-    private static MinecraftVersion _version;
+
+    @Getter
+    private static MinecraftVersion version;
 
     private static Map<MinecraftVersion, PacketRegistry> registeredProtocols = new HashMap<>();
 
-    public static void inject(MinecraftVersion version) {
-        _version = version;
+    public static void inject(MinecraftVersion _version) {
+        version = _version;
 
         //register packets
-        registry = getPacketsForVersion(version);
+        registry = getPacketsForVersion(_version);
     }
 
     private static PacketRegistry getPacketsForVersion(MinecraftVersion version) {
@@ -53,6 +59,9 @@ public class BetaLib {
             case R1_3_1:
                 registry = new Protocol_R_1_3();
                 break;
+            case R1_4_1:
+                registry = new Protocol_R_1_4();
+                break;
         }
 
         return registry;
@@ -68,15 +77,7 @@ public class BetaLib {
         return registeredProtocols.get(version);
     }
 
-    public static PacketRegistry getRegistry() {
-        return registry;
-    }
-
     public static void setDefaultVersion(MinecraftVersion ver) {
-        BetaLib._version = ver;
-    }
-
-    public static MinecraftVersion getVersion() {
-        return _version;
+        BetaLib.version = ver;
     }
 }

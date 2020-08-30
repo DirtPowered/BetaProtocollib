@@ -71,50 +71,16 @@ public abstract class AbstractPacket<T extends Packet> {
             itemStack = new BetaItemStack(itemId, stackSize, itemData);
 
             if (type == ItemStackType.ITEM_B1_9 || type == ItemStackType.ITEM_R1_3) {
-                return readNBT(buffer, itemStack, type);
+                if (type == ItemStackType.ITEM_B1_9 && !ItemUtil.isDamageable(itemStack.getBlockId()))
+                    return itemStack;
+
+                itemStack.setNbt(readNBT(buffer));
+
+                return itemStack;
             }
         }
 
         return itemStack;
-    }
-
-    private static BetaItemStack readNBT(ByteBuf buffer, BetaItemStack itemStack, ItemStackType type) {
-        if (type == ItemStackType.ITEM_B1_9 && !ItemUtil.isDamageable(itemStack.getBlockId())) {
-            return itemStack;
-        }
-
-        short size = buffer.readShort();
-
-        if (size < 0) {
-            return itemStack;
-        } else {
-            byte[] compressedNBT = new byte[size];
-            buffer.readBytes(compressedNBT);
-            try {
-                CompoundTag tag = NbtIo.decompress(compressedNBT);
-                itemStack.setNbt(tag);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return itemStack;
-        }
-    }
-
-    private static void writeNBT(ByteBuf buffer, BetaItemStack itemStack) {
-        if (!ItemUtil.isDamageable(itemStack.getBlockId()) && !itemStack.isOverrideDefault())
-            return;
-
-        try {
-            if (itemStack.hasNbt()) {
-                byte[] data = NbtIo.compress(itemStack.getNbt());
-                buffer.writeShort((short) data.length);
-                buffer.writeBytes(data);
-            } else {
-                buffer.writeShort(-1);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void writeItemStack(ByteBuf buffer, BetaItemStack item, ItemStackType type) {
@@ -126,8 +92,42 @@ public abstract class AbstractPacket<T extends Packet> {
             buffer.writeShort(item.getData());
 
             if (type == ItemStackType.ITEM_B1_9 || type == ItemStackType.ITEM_R1_3) {
-                writeNBT(buffer, item);
+                if (!ItemUtil.isDamageable(item.getBlockId()) && type != ItemStackType.ITEM_R1_3)
+                    return;
+
+                writeNBT(item.getNbt(), buffer);
             }
+        }
+    }
+
+    protected static CompoundTag readNBT(ByteBuf buffer) {
+        try {
+            short size = buffer.readShort();
+
+            if (size < 0) {
+                return null;
+            } else {
+                byte[] data = new byte[size];
+                buffer.readBytes(data);
+                return NbtIo.decompress(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    protected static void writeNBT(CompoundTag tag, ByteBuf buffer) {
+        try {
+            if (tag == null) {
+                buffer.writeShort(-1);
+            } else {
+                byte[] data = NbtIo.compress(tag);
+                buffer.writeShort((short) data.length);
+                buffer.writeBytes(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -1,5 +1,7 @@
 package com.github.dirtpowered.betaprotocollib.data.version;
 
+import lombok.Getter;
+
 public enum MinecraftVersion {
     B_1_6_6(13),
     B_1_7_3(14),
@@ -8,8 +10,10 @@ public enum MinecraftVersion {
     R1_1(23),
     R1_2_2(28),
     R1_2_4(29),
-    R1_3_1(39);
+    R1_3_1(39),
+    R1_4_1(47);
 
+    @Getter
     private int protocolVersion;
 
     MinecraftVersion(int protocolVersion) {
@@ -24,10 +28,6 @@ public enum MinecraftVersion {
         }
 
         return null;
-    }
-
-    public int getProtocolVersion() {
-        return protocolVersion;
     }
 
     public boolean isNewerOrEqual(MinecraftVersion version) {

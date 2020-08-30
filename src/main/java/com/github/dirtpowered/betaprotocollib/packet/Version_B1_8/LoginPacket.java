@@ -17,7 +17,7 @@ public class LoginPacket extends AbstractPacket<V1_8_1LoginPacketData> {
         buffer.writeInt(packet.getEntityId());
         writeString(packet.getPlayerName(), buffer);
         buffer.writeLong(packet.getSeed());
-        buffer.writeInt(packet.getGamemode());
+        buffer.writeInt(packet.getGameMode());
         buffer.writeByte(packet.getDimension());
         buffer.writeByte(packet.getDifficulty());
         buffer.writeByte(packet.getWorldHeight());

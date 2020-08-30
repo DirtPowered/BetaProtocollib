@@ -15,7 +15,7 @@ public class BedAndWeatherPacket extends AbstractPacket<V1_8_1BedAndWeatherPacke
     public ByteBuf writePacketData(V1_8_1BedAndWeatherPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
         buffer.writeByte(packet.getReason());
-        buffer.writeByte(packet.getGamemode());
+        buffer.writeByte(packet.getGameMode());
         return buffer;
     }
 

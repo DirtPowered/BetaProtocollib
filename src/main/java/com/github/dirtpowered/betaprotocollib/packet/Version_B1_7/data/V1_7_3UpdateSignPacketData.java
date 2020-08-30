@@ -2,51 +2,21 @@ package com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.data;
 
 import com.github.dirtpowered.betaprotocollib.model.Packet;
 import com.github.dirtpowered.betaprotocollib.packet.Version_B1_7.UpdateSignPacket;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.Arrays;
-
+@Data
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class V1_7_3UpdateSignPacketData extends Packet<UpdateSignPacket> {
-
     private int x;
     private int y;
     private int z;
     private String[] signLines;
 
-    public V1_7_3UpdateSignPacketData(int x, int y, int z, String[] signLines) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.signLines = signLines.clone();
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getZ() {
-        return z;
-    }
-
-    public String[] getSignLines() {
-        return signLines.clone();
-    }
-
     @Override
     public Class<UpdateSignPacket> getPacketClass() {
         return UpdateSignPacket.class;
-    }
-
-    @Override
-    public String toString() {
-        return "V1_7_3UpdateSignPacketData{"
-                + "x=" + x
-                + ", y=" + y
-                + ", z=" + z
-                + ", signLines=" + Arrays.toString(signLines)
-                + '}';
     }
 }
