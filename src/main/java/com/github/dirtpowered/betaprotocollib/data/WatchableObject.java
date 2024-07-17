@@ -5,7 +5,7 @@ public class WatchableObject {
     private int index;
     private Object value;
 
-    WatchableObject(int type, int index, Object value) {
+    public WatchableObject(int type, int index, Object value) {
         this.type = type;
         this.index = index;
         this.value = value;
