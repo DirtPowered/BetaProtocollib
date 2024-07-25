@@ -22,7 +22,7 @@ public class BetaLib {
     @Getter
     private static MinecraftVersion version;
 
-    private static Map<MinecraftVersion, PacketRegistry> registeredProtocols = new HashMap<>();
+    private static final Map<MinecraftVersion, PacketRegistry> registeredProtocols = new HashMap<>();
 
     public static void inject(MinecraftVersion _version) {
         version = _version;
@@ -36,8 +36,6 @@ public class BetaLib {
 
         switch (version) {
             case B_1_6_6:
-                registry = new Protocol_B1_7();
-                break;
             case B_1_7_3:
                 registry = new Protocol_B1_7();
                 break;
@@ -51,8 +49,6 @@ public class BetaLib {
                 registry = new Protocol_R_1_1();
                 break;
             case R1_2_2:
-                registry = new Protocol_R_1_2();
-                break;
             case R1_2_4:
                 registry = new Protocol_R_1_2();
                 break;

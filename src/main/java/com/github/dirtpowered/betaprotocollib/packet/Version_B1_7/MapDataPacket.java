@@ -6,6 +6,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
 public class MapDataPacket extends AbstractPacket<V1_7_3MapDataPacketData> {
+    private static final int ITEM_ID = 358;
 
     public MapDataPacket() {
         super(0x83);
@@ -14,7 +15,7 @@ public class MapDataPacket extends AbstractPacket<V1_7_3MapDataPacketData> {
     @Override
     public ByteBuf writePacketData(V1_7_3MapDataPacketData packet) {
         ByteBuf buffer = Unpooled.buffer();
-        buffer.writeShort(0); //always 0
+        buffer.writeShort(ITEM_ID);
         buffer.writeShort(packet.getMapId());
         buffer.writeByte(packet.getData().length);
         buffer.writeBytes(packet.getData());
