@@ -1,10 +1,10 @@
 package com.github.dirtpowered.betaprotocollib.utils;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Location {
     private double x;
     private double y;
