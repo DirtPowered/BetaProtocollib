@@ -29,6 +29,7 @@ public class BetaLib {
 
         //register packets
         registry = getPacketsForVersion(_version);
+        registry.populateCache();
     }
 
     private static PacketRegistry getPacketsForVersion(MinecraftVersion version) {
